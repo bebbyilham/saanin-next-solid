@@ -109,11 +109,11 @@ const SharePost = () => {
               href="#"
               className="pr-2 duration-300 ease-in-out hover:text-primary"
             >
-              #business
+              #RSJHBSAANIN
             </a>
 
             <a href="#" className="duration-300 ease-in-out hover:text-primary">
-              #saas
+              #SumbarSehat
             </a>
           </li>
         </ul>

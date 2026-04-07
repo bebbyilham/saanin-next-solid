@@ -1,47 +1,63 @@
 import { Brand } from "@/types/brand";
 
+const baseUrl = "https://rsjhbsaanin.sumbarprov.go.id/assets-new/img/logo/";
+
 const brandData: Brand[] = [
   {
-    id: 0.25,
-    name: "Client",
+    id: 0.1,
+    name: "Sejiwa",
     href: "#",
-    image: "/images/brand/brand-light-01.svg",
-    imageLight: "/images/brand/brand-dark-01.svg",
+    image: `/images/brand/logosejiwa2.png`,
+    imageLight: `/images/brand/logosejiwa2.png`,
+  },
+  {
+    id: 0.2,
+    name: "Pemprov Sumbar",
+    href: "#",
+    image: `/images/brand/logopemprovsumbar.png`,
+    imageLight: `/images/brand/logopemprovsumbar.png`,
   },
   {
     id: 0.3,
-    name: "Client",
+    name: "Berakhlak",
     href: "#",
-    image: "/images/brand/brand-light-02.svg",
-    imageLight: "/images/brand/brand-dark-02.svg",
+    image: `/images/brand/tempberakhlakrsjhbs.png`,
+    imageLight: `/images/brand/tempberakhlakrsjhbs.png`,
   },
   {
     id: 0.4,
-    name: "Client",
+    name: "Kemendagri",
     href: "#",
-    image: "/images/brand/brand-light-03.svg",
-    imageLight: "/images/brand/brand-dark-03.svg",
+    image: `/images/brand/kemendagri.png`,
+    imageLight: `/images/brand/kemendagri.png`,
   },
   {
     id: 0.5,
-    name: "Client",
+    name: "LARS DHP",
     href: "#",
-    image: "/images/brand/brand-light-04.svg",
-    imageLight: "/images/brand/brand-dark-04.svg",
+    image: `/images/brand/lars_dhp.png`,
+    imageLight: `/images/brand/lars_dhp.png`,
   },
   {
     id: 0.6,
-    name: "Client",
+    name: "BPJS",
     href: "#",
-    image: "/images/brand/brand-light-05.svg",
-    imageLight: "/images/brand/brand-dark-05.svg",
+    image: `/images/brand/bpjs.png`,
+    imageLight: `/images/brand/bpjs.png`,
   },
   {
     id: 0.7,
-    name: "Client",
+    name: "Kemkes",
     href: "#",
-    image: "/images/brand/brand-light-06.svg",
-    imageLight: "/images/brand/brand-dark-06.svg",
+    image: `/images/brand/logo-kemkes.png`,
+    imageLight: `/images/brand/logo-kemkes.png`,
+  },
+  {
+    id: 0.8,
+    name: "Satu Sehat",
+    href: "#",
+    image: `/images/brand/satusehat.png`,
+    imageLight: `/images/brand/satusehat.png`,
   },
 ];
 

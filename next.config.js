@@ -10,8 +10,8 @@ const nextConfig = {
         port: "",
       },
       {
-        protocol: "http",
-        hostname: "localhost",
+        protocol: "https",
+        hostname: "api-web.sumbarprov.go.id",
         port: "",
       },
     ],
