@@ -14,6 +14,16 @@ const nextConfig = {
         hostname: "api-web.sumbarprov.go.id",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "*.cdninstagram.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "*.fbcdn.net",
+        port: "",
+      },
     ],
   },
 };

@@ -32,8 +32,8 @@ export default function Home() {
       <Blog />
       <Gallery />
       <VideoGallery />
-      <Brands />
       <Feature />
+      <Brands />
       <About />
       <FunFact />
       <Integration />

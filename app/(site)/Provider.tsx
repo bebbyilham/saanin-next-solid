@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Lines from "@/components/Lines";
 import ScrollToTop from "@/components/ScrollToTop";
+import Accessibility from "@/components/Accessibility";
 import { ThemeProvider } from "next-themes";
 import ToasterContext from "../context/ToastContext";
 
@@ -23,6 +24,7 @@ export default function ClientLayout({
             <ToasterContext />
             {children}
             <Footer />
+            <Accessibility />
             <ScrollToTop />
         </ThemeProvider>
     );

@@ -38,23 +38,26 @@ const VideoGallery = async () => {
       "https://api-web.sumbarprov.go.id/api/galery-video/3107",
       { cache: "no-store" }
     );
-    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-    const result = await response.json();
+    if (!response.ok) {
+      console.warn(`Gagal memuat galeri video: HTTP ${response.status}`);
+    } else {
+      const result = await response.json();
 
-    if (result?.data && Array.isArray(result.data)) {
-      videoData = result.data.map((item: any, index: number) => {
-        const videoId = getYouTubeId(item.url || "");
-        return {
-          _id: index,
-          title: item.title,
-          slug: item.slug,
-          url: item.url,
-          thumbnailUrl: videoId
-            ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
-            : "",
-          createdAt: item.created_at,
-        };
-      });
+      if (result?.data && Array.isArray(result.data)) {
+        videoData = result.data.map((item: any, index: number) => {
+          const videoId = getYouTubeId(item.url || "");
+          return {
+            _id: index,
+            title: item.title,
+            slug: item.slug,
+            url: item.url,
+            thumbnailUrl: videoId
+              ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+              : "",
+            createdAt: item.created_at,
+          };
+        });
+      }
     }
   } catch (error) {
     console.error("Gagal memuat data galeri video:", error);

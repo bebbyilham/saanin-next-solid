@@ -5,21 +5,34 @@ import { Blog as BlogType } from "@/types/blog";
 import Link from "next/link";
 
 const Blog = async () => {
-  const response = await fetch(
-    "https://api-web.sumbarprov.go.id/api/category/berita-utama/3107",
-    {
-      next: { revalidate: 3600 },
+  let blogData: BlogType[] = [];
+
+  try {
+    const response = await fetch(
+      "https://api-web.sumbarprov.go.id/api/category/berita-utama/3107",
+      {
+        next: { revalidate: 3600 },
+      }
+    );
+
+    if (!response.ok) {
+      console.warn(`Gagal memuat berita utama: HTTP ${response.status}`);
+    } else {
+      const result = await response.json();
+      if (result?.data && Array.isArray(result.data)) {
+        blogData = result.data.map((item: any, index: number) => ({
+          _id: index,
+          title: item.title,
+          slug: item.slug,
+          metadata: item.category,
+          mainImage: `https://api-web.sumbarprov.go.id${item.gambar}`,
+          publishedAt: item.created_at,
+        }));
+      }
     }
-  );
-  const result = await response.json();
-  const blogData: BlogType[] = result.data.map((item: any, index: number) => ({
-    _id: index,
-    title: item.title,
-    slug: item.slug,
-    metadata: item.category,
-    mainImage: `https://api-web.sumbarprov.go.id${item.gambar}`,
-    publishedAt: item.created_at,
-  }));
+  } catch (error) {
+    console.error("Gagal memuat data berita utama:", error);
+  }
 
   return (
     <section className="py-20 lg:py-25 xl:py-30">

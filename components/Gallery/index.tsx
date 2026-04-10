@@ -20,9 +20,10 @@ const Gallery = async () => {
       { cache: "no-store" }
     );
 
-    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-
-    const result = await response.json();
+    if (!response.ok) {
+      console.warn(`Gagal memuat galeri foto: HTTP ${response.status}`);
+    } else {
+      const result = await response.json();
 
     if (result?.data && Array.isArray(result.data)) {
       galleryData = result.data.map((item: any, index: number) => ({
@@ -32,6 +33,7 @@ const Gallery = async () => {
         cover: `https://api-web.sumbarprov.go.id${item.cover}`,
         createdAt: item.created_at,
       }));
+    }
     }
   } catch (error) {
     console.error("Gagal memuat data galeri foto:", error);
