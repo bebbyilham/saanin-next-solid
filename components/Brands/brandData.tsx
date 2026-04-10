@@ -1,6 +1,6 @@
 import { Brand } from "@/types/brand";
 
-const baseUrl = "https://rsjhbsaanin.sumbarprov.go.id/assets-new/img/logo/";
+const baseUrl = "https://rsjProf HB Saanin.sumbarprov.go.id/assets-new/img/logo/";
 
 const brandData: Brand[] = [
   {

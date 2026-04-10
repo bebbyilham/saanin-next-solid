@@ -1,27 +1,88 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+type SliderItem = {
+  status: string;
+  gambar: string;
+  created_by: string;
+  created_at: string;
+};
 
 const Hero = () => {
-  const [email, setEmail] = useState("");
+  const [sliders, setSliders] = useState<SliderItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    const fetchSliders = async () => {
+      try {
+        const res = await fetch("https://api-web.sumbarprov.go.id/api/slider/3107");
+        if (res.ok) {
+          const data = await res.json();
+          if (data?.data && Array.isArray(data.data)) {
+            setSliders(
+              data.data.filter((item: SliderItem) => item.status === "Publish")
+            );
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching sliders:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchSliders();
+  }, []);
 
   return (
     <>
       <section className="overflow-hidden pt-35 pb-20 md:pt-40 xl:pt-46 xl:pb-25">
         <div className="max-w-c-1390 mx-auto px-4 md:px-8 2xl:px-0">
           <div className="animate_right">
-            <Image
-              src="/images/hero/h1_hero.png"
-              alt="Rumah Sakit Jiwa Prof. HB Saanin"
-              width={1390}
-              height={500}
-              priority
-              className="h-auto w-full rounded-2xl object-cover object-center"
-            />
+            {isLoading ? (
+              <div className="flex aspect-[139/50] w-full items-center justify-center rounded-2xl bg-gray-100 dark:bg-strokedark">
+                <div className="h-10 w-10 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
+              </div>
+            ) : sliders.length > 0 ? (
+                <Swiper
+                  modules={[Autoplay, Pagination, Navigation]}
+                  spaceBetween={30}
+                  slidesPerView={1}
+                  loop={true}
+                  autoplay={{ delay: 5000, disableOnInteraction: false }}
+                  pagination={{ clickable: true }}
+                  navigation={true}
+                className="w-full rounded-2xl"
+              >
+                {sliders.map((slider, index) => (
+                  <SwiperSlide key={index}>
+                    <Image
+                      src={`https://api-web.sumbarprov.go.id${slider.gambar}`}
+                      alt={`Slider ${index + 1}`}
+                      width={1390}
+                      height={500}
+                      priority={index === 0}
+                      className="h-auto w-full rounded-2xl object-cover object-center"
+                      unoptimized
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <Image
+                src="/images/hero/h1_hero.png"
+                alt="Rumah Sakit Jiwa Prof. HB Saanin"
+                width={1390}
+                height={500}
+                priority
+                className="h-auto w-full rounded-2xl object-cover object-center"
+              />
+            )}
           </div>
         </div>
       </section>

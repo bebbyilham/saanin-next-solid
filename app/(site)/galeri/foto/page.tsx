@@ -4,8 +4,8 @@ import Link from "next/link";
 import SectionHeader from "@/components/Common/SectionHeader";
 
 export const metadata: Metadata = {
-  title: "Galeri Foto - RSJ HBSAANIN",
-  description: "Dokumentasi kegiatan RSJ HBSAANIN dalam bentuk foto",
+  title: "Galeri Foto - RSJ Prof HB Saanin",
+  description: "Dokumentasi kegiatan RSJ Prof HB Saanin dalam bentuk foto",
 };
 
 type GalleryItem = {
@@ -48,7 +48,7 @@ const GaleriFotoPage = async () => {
             headerInfo={{
               title: "Media & Visual",
               subtitle: "GALERI FOTO",
-              description: `Koleksi foto kegiatan dan fasilitas di RSJ HBSAANIN`,
+              description: `Koleksi foto kegiatan dan fasilitas di RSJ Prof HB Saanin`,
             }}
           />
 

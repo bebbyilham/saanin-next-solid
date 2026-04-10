@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "Kategori - RSJ HBSAANIN",
+  title: "Kategori - RSJ Prof HB Saanin",
   description: "Daftar publikasi berdasarkan kategori",
 };
 
@@ -43,9 +43,9 @@ const CategoryPage = async ({ params }: Props) => {
               data.map((item: any, key: number) => (
                 <div
                   key={key}
-                  className="animate_top rounded-lg bg-white p-4 pb-9 shadow-solid-8 dark:bg-blacksection"
+                  className="animate_top flex flex-col h-full overflow-hidden rounded-xl bg-white shadow-solid-8 border border-stroke dark:border-strokedark dark:bg-blacksection"
                 >
-                  <div className="relative block aspect-368/239">
+                  <Link href={`/berita/${item.slug}`} className="relative block shrink-0 aspect-[16/10]">
                     {item.gambar ? (
                       <Image
                         src={baseUrl + item.gambar}
@@ -59,15 +59,48 @@ const CategoryPage = async ({ params }: Props) => {
                         No Image
                       </div>
                     )}
-                  </div>
+                  </Link>
 
-                  <div className="px-4">
-                    <h3 className="mb-3.5 mt-7.5 line-clamp-2 inline-block text-lg font-medium text-black duration-300 hover:text-primary dark:text-white dark:hover:text-primary xl:text-itemtitle2">
+                  <div className="p-6 flex flex-col grow">
+                    {item.created_at && (
+                      <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-primary">
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>{item.created_at.split(' ').slice(0, 3).join(' ')}</span>
+                      </div>
+                    )}
+                    
+                    <h3 className="mb-6 line-clamp-2 text-[20px] font-bold leading-snug text-black hover:text-primary dark:text-white dark:hover:text-primary">
                       <Link href={`/berita/${item.slug}`}>
                         {item.title}
                       </Link>
                     </h3>
-                    <p className="line-clamp-3">{item.excerpt || item.content_short || ""}</p>
+
+                    <div className="mt-auto border-t border-stroke pt-4 dark:border-strokedark">
+                      <Link
+                        href={`/berita/${item.slug}`}
+                        className="text-[15px] font-bold text-[#1e3a8a] hover:underline flex items-center gap-1.5 dark:text-blue-400"
+                      >
+                        Baca Selengkapnya
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                          <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))

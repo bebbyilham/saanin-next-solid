@@ -3,8 +3,8 @@ import Image from "next/image";
 import SectionHeader from "@/components/Common/SectionHeader";
 
 export const metadata: Metadata = {
-  title: "Galeri Video - RSJ HBSAANIN",
-  description: "Dokumentasi video kegiatan RSJ HBSAANIN",
+  title: "Galeri Video - RSJ Prof HB Saanin",
+  description: "Dokumentasi video kegiatan RSJ Prof HB Saanin",
 };
 
 type VideoItem = {
@@ -67,7 +67,7 @@ const GaleriVideoPage = async () => {
             headerInfo={{
               title: "Media & Visual",
               subtitle: "GALERI VIDEO",
-              description: `Koleksi video informasi, publikasi, dan edukasi dari RSJ HBSAANIN`,
+              description: `Koleksi video informasi, publikasi, dan edukasi dari RSJ Prof HB Saanin`,
             }}
           />
 

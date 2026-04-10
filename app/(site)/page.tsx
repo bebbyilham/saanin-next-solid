@@ -14,6 +14,7 @@ import Contact from "@/components/Contact";
 import Blog from "@/components/Blog";
 import Gallery from "@/components/Gallery";
 import VideoGallery from "@/components/VideoGallery";
+import PengumumanHome from "@/components/PengumumanHome";
 import Testimonial from "@/components/Testimonial";
 
 export const metadata: Metadata = {
@@ -32,8 +33,9 @@ export default function Home() {
       <Blog />
       <Gallery />
       <VideoGallery />
-      <Feature />
+      <PengumumanHome />
       <Brands />
+      <Feature />
       <About />
       <FunFact />
       <Integration />

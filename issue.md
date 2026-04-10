@@ -1,6 +1,6 @@
-# Integrasi API RSJ HBSAANIN
+# Integrasi API RSJ Prof HB Saanin
 
-Rencana implementasi integrasi API RSJ HBSAANIN ke dalam boilerplate Next.js Solid ini mencakup pembaruan menu navigasi (Navbar) dan pembuatan *dynamic routes* untuk memfasilitasi pengambilan data (fetching data) langsung dari API yang diberikan. 
+Rencana implementasi integrasi API RSJ Prof HB Saanin ke dalam boilerplate Next.js Solid ini mencakup pembaruan menu navigasi (Navbar) dan pembuatan *dynamic routes* untuk memfasilitasi pengambilan data (fetching data) langsung dari API yang diberikan. 
 
 ## User Review Required
 
