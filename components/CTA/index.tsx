@@ -29,12 +29,10 @@ const CTA = () => {
               className="animate_left md:w-[70%] lg:w-1/2"
             >
               <h2 className="mb-4 w-11/12 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle4">
-                Join With Us Today & Increase Your Productivity
+                Terhubung dengan Kami
               </h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                convallis tortor eros. Donec vitae tortor lacus. Phasellus
-                aliquam ante in maximus.
+                Akses informasi terbaru, artikel kesehatan jiwa, dan berbagai kegiatan rumah sakit secara mudah melalui platform media sosial resmi kami.
               </p>
             </motion.div>
             <motion.div
@@ -64,10 +62,10 @@ const CTA = () => {
                   className="hidden xl:block"
                 />
                 <a
-                  href="/auth/signup"
+                  href="#"
                   className="inline-flex items-center gap-2.5 rounded-full bg-black px-6 py-3 font-medium text-white hover:opacity-90 dark:bg-white dark:text-black"
                 >
-                  Sign up free
+                  Ikuti Kami
                   <Image
                     width={20}
                     height={20}

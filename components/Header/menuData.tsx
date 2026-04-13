@@ -73,6 +73,12 @@ const menuData: Menu[] = [
         newTab: false,
         path: "/galeri/video",
       },
+      {
+        id: 34,
+        title: "Jadwal Dokter",
+        newTab: false,
+        path: "/jadwal-dokter",
+      },
     ],
   },
   {

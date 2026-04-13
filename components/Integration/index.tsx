@@ -7,17 +7,7 @@ const Integration = () => {
   return (
     <>
       <section>
-        <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
-          {/* <!-- Section Title Start --> */}
-          <SectionHeader
-            headerInfo={{
-              title: `TERHUBUNGLAH DENGAN KAMI`,
-              subtitle: `Jejaring Sosial Resmi RSJ Saanin`,
-              description: `Akses informasi terbaru, artikel kesehatan jiwa, dan berbagai kegiatan rumah sakit secara mudah melalui platform media sosial resmi kami.`,
-            }}
-          />
-          {/* <!-- Section Title End --> */}
-        </div>
+        
 
         <div className="pattern-dots pattern-blue-500 pattern-bg-white pattern-size-4 pattern-opacity-10 relative z-50 mx-auto mt-15 max-w-c-1154 px-4 md:px-8 xl:mt-20 xl:px-0">
           <div className="absolute -top-3/4 left-0 right-0 -z-1 mx-auto h-full w-full">
@@ -37,7 +27,7 @@ const Integration = () => {
               className="hidden dark:block"
             />
           </div>
-          <div className="flex flex-wrap justify-around gap-y-10">
+          <div className="flex flex-wrap justify-around gap-y-2">
             {/* Instagram */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } }}
