@@ -13,10 +13,12 @@ const IKMCard = () => {
   const [data, setData] = useState<IKMData | null>(null);
   const [period, setPeriod] = useState<PeriodType>("SEMESTER_1");
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setMessage(null);
       try {
         const response = await fetch("https://dev-sepakat.sumbarprov.go.id/api/v1/penilaian", {
           method: "POST",
@@ -34,32 +36,21 @@ const IKMCard = () => {
         if (!response.ok) throw new Error("Gagal mengambil data IKM");
         
         const result = await response.json();
-        // Assuming the response structure based on common SEPAKAT outputs
-        // If API fails or different, we use mock as fallback for UI demonstration
-        if (result.status && result.data) {
+        console.log(result);
+        
+        if (result.success === false && result.message) {
+          setMessage(result.message);
+          setData(null);
+        } else if (result.status && result.data) {
           setData(result.data);
         } else {
-           // Mock fallback based on screenshot for 3107
-           setData({
-            ikm: 2.04,
-            konversi_ikm: 51.00,
-            nilai_layanan: "D: Tidak baik",
-            total_responden: 2,
-            laki_laki: 2,
-            perempuan: 0
-           });
+          setMessage("Data tidak ditemukan");
+          setData(null);
         }
       } catch (error) {
         console.error("IKM Fetch Error:", error);
-        // Mock fallback for UI consistency
-        setData({
-          ikm: 2.04,
-          konversi_ikm: 51.00,
-          nilai_layanan: "D: Tidak baik",
-          total_responden: 2,
-          laki_laki: 2,
-          perempuan: 0
-        });
+        setMessage("Terjadi kesalahan saat memuat data");
+        setData(null);
       } finally {
         setLoading(false);
       }
@@ -93,6 +84,10 @@ const IKMCard = () => {
       {loading ? (
         <div className="flex h-[200px] items-center justify-center">
              <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+        </div>
+      ) : message ? (
+        <div className="flex h-[200px] items-center justify-center">
+          <p className="text-sm font-medium text-waterloo dark:text-manatee">{message}</p>
         </div>
       ) : data && (
         <>
