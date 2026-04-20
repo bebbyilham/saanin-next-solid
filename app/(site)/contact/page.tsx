@@ -3,13 +3,13 @@ import Contact from "@/components/Contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Support Page - Solid SaaS Boilerplate",
+  title: "Hubungi Kami - RSJ Prof HB Saanin",
 
   // other metadata
-  description: "This is Support page for Solid Pro"
+  description: "Halaman Kontak RSJ Prof HB Saanin Padang"
 };
 
-const SupportPage = () => {
+const ContactPage = () => {
   return (
     <div className="pb-20 pt-40">
       <Contact />
@@ -17,4 +17,4 @@ const SupportPage = () => {
   );
 };
 
-export default SupportPage;
+export default ContactPage;

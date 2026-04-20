@@ -125,43 +125,41 @@ const Footer = () => {
                   whileInView="visible"
                   transition={{ duration: 1, delay: 0.1 }}
                   viewport={{ once: true }}
-                  className="animate_top"
+                  className="animate_top w-full lg:w-1/3"
                 >
                   <h4 className="mb-9 text-itemtitle2 font-medium text-black dark:text-white">
-                    Quick Links
+                    Akses Cepat
                   </h4>
 
                   <ul>
                     <li>
-                      <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
-                      >
-                        Home
+                      <a href="/" className="mb-3 inline-block hover:text-primary">
+                        Beranda
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
-                      >
-                        Product
+                      <a href="/profil" className="mb-3 inline-block hover:text-primary">
+                        Profil
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
-                      >
-                        Careers
+                      <a href="/publikasi" className="mb-3 inline-block hover:text-primary">
+                        Publikasi
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
-                      >
-                        Pricing
+                      <a href="/perpustakaan/informasi-publik" className="mb-3 inline-block hover:text-primary">
+                        Perpustakaan
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/jadwal-dokter" className="mb-3 inline-block hover:text-primary">
+                        Jadwal Dokter
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/contact" className="mb-3 inline-block hover:text-primary">
+                        Kontak
                       </a>
                     </li>
                   </ul>
@@ -183,65 +181,7 @@ const Footer = () => {
                   whileInView="visible"
                   transition={{ duration: 1, delay: 0.1 }}
                   viewport={{ once: true }}
-                  className="animate_top"
-                >
-                  <h4 className="mb-9 text-itemtitle2 font-medium text-black dark:text-white">
-                    Support
-                  </h4>
-
-                  <ul>
-                    <li>
-                      <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
-                      >
-                        Company
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
-                      >
-                        Press media
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
-                      >
-                        Our Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="mb-3 inline-block hover:text-primary"
-                      >
-                        Contact Us
-                      </a>
-                    </li>
-                  </ul>
-                </motion.div>
-
-                <motion.div
-                  variants={{
-                    hidden: {
-                      opacity: 0,
-                      y: -20,
-                    },
-
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                    },
-                  }}
-                  initial="hidden"
-                  whileInView="visible"
-                  transition={{ duration: 1, delay: 0.1 }}
-                  viewport={{ once: true }}
-                  className="animate_top lg:w-1/3"
+                  className="animate_top w-full lg:w-2/3"
                 >
                   <h4 className="mb-9 text-itemtitle2 font-medium text-black dark:text-white">
                     Hubungi Kami
@@ -256,7 +196,7 @@ const Footer = () => {
                         </svg>
                       </div>
                       <p className="text-sm leading-relaxed">
-                        Jl. Raya Ulu Gadut Padang, Kelurahan Limau Manis Selatan Kecamatan Pauh 25129
+                        Jl. Raya Ulu Gadut Padang, Kelurahan Limau Manis Selatan, Kecamatan Pauh 25129
                       </p>
                     </div>
 
