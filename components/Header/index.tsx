@@ -9,7 +9,7 @@ import menuData from "./menuData";
 
 const Header = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
-  const [dropdownToggler, setDropdownToggler] = useState(false);
+  const [dropdownToggler, setDropdownToggler] = useState<number | null>(null);
   const [stickyMenu, setStickyMenu] = useState(false);
 
   const pathUrl = usePathname();
@@ -109,7 +109,7 @@ const Header = () => {
                   {menuItem.submenu ? (
                     <>
                       <button
-                        onClick={() => setDropdownToggler(!dropdownToggler)}
+                        onClick={() => setDropdownToggler(dropdownToggler === key ? null : key)}
                         className="hover:text-primary flex cursor-pointer items-center justify-between gap-3"
                       >
                         {menuItem.title}
@@ -125,7 +125,7 @@ const Header = () => {
                       </button>
 
                       <ul
-                        className={`dropdown ${dropdownToggler ? "flex" : ""}`}
+                        className={`dropdown ${dropdownToggler === key ? "flex" : ""}`}
                       >
                         {menuItem.submenu.map((item, key) => (
                           <li key={key} className="hover:text-primary">
