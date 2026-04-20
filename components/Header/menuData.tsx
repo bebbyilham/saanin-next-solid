@@ -52,7 +52,7 @@ const menuData: Menu[] = [
   },
   {
     id: 3,
-    title: "Berita Publikasi",
+    title: "Publikasi",
     newTab: false,
     submenu: [
       {
@@ -75,17 +75,17 @@ const menuData: Menu[] = [
       },
       {
         id: 34,
+        title: "Pengumuman",
+        newTab: false,
+        path: "/pengumuman",
+      },
+      {
+        id: 35,
         title: "Jadwal Dokter",
         newTab: false,
         path: "/jadwal-dokter",
       },
     ],
-  },
-  {
-    id: 4,
-    title: "Pengumuman",
-    newTab: false,
-    path: "/pengumuman",
   },
   {
     id: 5,
@@ -95,26 +95,80 @@ const menuData: Menu[] = [
   },
   {
     id: 6,
-    title: "Publikasi & Dokumen",
+    title: "Perpustakaan",
     newTab: false,
     submenu: [
       {
         id: 61,
-        title: "Download",
+        title: "Unduh Data",
         newTab: false,
-        path: "/kategori/download",
+        path: "/perpustakaan/download",
       },
       {
         id: 62,
         title: "Infografis",
         newTab: false,
-        path: "/kategori/infografis",
+        path: "/perpustakaan/infografis",
       },
       {
         id: 63,
-        title: "Laporan Kinerja",
+        title: "Laporan Kinerja Instansi Pemerintah",
         newTab: false,
-        path: "/kategori/laporan-kinerja-instansi-pemerintah",
+        path: "/perpustakaan/laporan-kinerja-instansi-pemerintah",
+      },
+      {
+        id: 64,
+        title: "Perjanjian Kinerja",
+        newTab: false,
+        path: "/perpustakaan/perjanjian-kinerja",
+      },
+      {
+        id: 65,
+        title: "Rencana Kerja",
+        newTab: false,
+        path: "/perpustakaan/rencana-kerja",
+      },
+      {
+        id: 66,
+        title: "Rencana Kerja Tahunan",
+        newTab: false,
+        path: "/perpustakaan/rencana-kinerja-tahunan",
+      },
+      {
+        id: 67,
+        title: "Rencana Strategis",
+        newTab: false,
+        path: "/perpustakaan/rencana-strategis",
+      },
+      {
+        id: 68,
+        title: "SOP",
+        newTab: false,
+        path: "/perpustakaan/sop",
+      },
+      {
+        id: 69,
+        title: "Indikator Kinerja Individu",
+        newTab: false,
+        path: "/perpustakaan/indikator-kinerja-individu",
+      },
+      {
+        id: 70,
+        title: "Renaksi dan Realisasi Renaksi",
+        newTab: false,
+        path: "/perpustakaan/renaksi-dan-realisasi-renaksi",
+      },
+      {
+        id: 71,
+        title: "SKP",
+        newTab: false,
+        path: "/perpustakaan/skp",
+      },
+      {
+        id: 72,
+        title: "IKU",
+        newTab: false,
+        path: "/perpustakaan/iku",
       },
     ],
   },

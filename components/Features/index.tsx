@@ -1,5 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import SectionHeader from "../Common/SectionHeader";
 import SingleDoctor from "../Doctors/SingleDoctor";
 import DoctorModal from "../Doctors/DoctorModal";
@@ -69,14 +73,35 @@ const Feature = () => {
               </button>
             </div>
           ) : (
-            <div className="mt-12.5 grid grid-cols-1 gap-7.5 md:grid-cols-2 lg:mt-15 lg:grid-cols-3 xl:mt-20 xl:gap-12.5">
-              {doctors.map((doctor, key) => (
-                <SingleDoctor
-                  doctor={doctor}
-                  key={key}
-                  onViewSchedule={handleViewSchedule}
-                />
-              ))}
+            <div className="mt-12.5 lg:mt-15 xl:mt-20">
+              <Swiper
+                spaceBetween={30}
+                slidesPerView={1}
+                breakpoints={{
+                  768: {
+                    slidesPerView: 2,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                  },
+                }}
+                pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                }}
+                modules={[Pagination, Autoplay]}
+                className="pb-16"
+              >
+                {doctors.map((doctor, key) => (
+                  <SwiperSlide key={key}>
+                    <SingleDoctor
+                      doctor={doctor}
+                      onViewSchedule={handleViewSchedule}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           )}
         </div>

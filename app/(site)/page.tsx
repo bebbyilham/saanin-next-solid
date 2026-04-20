@@ -29,16 +29,16 @@ export default function Home() {
     <main>
       <Hero />
       <Dashboard />
+      <CTA />
       <Blog />
       <Gallery />
       <VideoGallery />
       <PengumumanHome />
       <Brands />
       <Feature />
-      <About />
-      <CTA />
       <Integration />
       <FunFact />
+      <About />
     </main>
   );
 }

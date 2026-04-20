@@ -2,10 +2,9 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 type SliderItem = {
   status: string;
@@ -50,13 +49,12 @@ const Hero = () => {
               </div>
             ) : sliders.length > 0 ? (
                 <Swiper
-                  modules={[Autoplay, Pagination, Navigation]}
+                  modules={[Autoplay, Pagination]}
                   spaceBetween={30}
                   slidesPerView={1}
                   loop={true}
                   autoplay={{ delay: 5000, disableOnInteraction: false }}
                   pagination={{ clickable: true }}
-                  navigation={true}
                 className="w-full rounded-2xl"
               >
                 {sliders.map((slider, index) => (
