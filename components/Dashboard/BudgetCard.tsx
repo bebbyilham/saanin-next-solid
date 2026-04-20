@@ -126,7 +126,7 @@ const BudgetCard = () => {
             </div>
             <div className="mt-4 text-[10px] text-waterloo">
               <p>Terakhir diperbarui: {data.last_updated}</p>
-              <p>*data otomatis ditarik dari SIMBANGDA Sumbarprov</p>
+              <p>*data otomatis sinkron dengan SIMBANGDA Sumbarprov</p>
             </div>
           </div>
 
