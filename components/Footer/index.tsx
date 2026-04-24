@@ -143,8 +143,8 @@ const Footer = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="/publikasi" className="mb-3 inline-block hover:text-primary">
-                        Publikasi
+                      <a href="/kategori/berita-utama" className="mb-3 inline-block hover:text-primary">
+                        Berita
                       </a>
                     </li>
                     <li>
@@ -155,6 +155,11 @@ const Footer = () => {
                     <li>
                       <a href="/jadwal-dokter" className="mb-3 inline-block hover:text-primary">
                         Jadwal Dokter
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/info-tempat-tidur" className="mb-3 inline-block hover:text-primary">
+                        Info Tempat Tidur
                       </a>
                     </li>
                     <li>

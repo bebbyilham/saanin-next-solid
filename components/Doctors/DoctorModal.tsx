@@ -32,10 +32,10 @@ const DoctorModal = ({
       ></div>
 
       {/* Modal Content */}
-      <div className="relative w-full max-w-2xl animate_top overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-blacksection">
+      <div className="relative w-full max-w-2xl animate_top overflow-y-auto rounded-2xl bg-white shadow-2xl dark:bg-blacksection max-h-[90vh] md:overflow-hidden">
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-500 hover:bg-gray-100 hover:text-black dark:text-gray-400 dark:hover:bg-white/20 dark:hover:text-white"
+          className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-gray-500 backdrop-blur-md hover:bg-gray-100 hover:text-black dark:text-gray-400 dark:hover:bg-white/20 dark:hover:text-white shadow-sm"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,10 +53,10 @@ const DoctorModal = ({
           </svg>
         </button>
 
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row h-full">
           {/* Sidebar / Photo */}
-          <div className="bg-gray-50 p-8 dark:bg-black md:w-1/3">
-            <div className="relative mx-auto h-[300px] w-full overflow-hidden rounded-xl border-4 border-white shadow-md dark:border-strokedark">
+          <div className="bg-gray-50 p-6 dark:bg-black md:w-1/3 md:p-8">
+            <div className="relative mx-auto h-[200px] w-[200px] md:h-[300px] md:w-full overflow-hidden rounded-xl border-4 border-white shadow-md dark:border-strokedark">
               {hasImage ? (
                 <Image
                   src={foto_pegawai}
@@ -74,11 +74,11 @@ const DoctorModal = ({
           </div>
 
           {/* Main Info */}
-          <div className="p-8 md:w-2/3">
-            <h2 className="mb-2 text-2xl font-bold text-black dark:text-white">
+          <div className="p-6 md:w-2/3 md:p-8 md:overflow-y-auto">
+            <h2 className="mb-2 text-xl font-bold text-black dark:text-white md:text-2xl">
               {dokter_nama}
             </h2>
-            <p className="mb-6 inline-block rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
+            <p className="mb-6 inline-block rounded-full bg-primary/10 px-4 py-1 text-xs font-medium text-primary sm:text-sm">
               {profesi}
             </p>
 
@@ -119,7 +119,7 @@ const DoctorModal = ({
               </ul>
             </div>
 
-            <div>
+            <div className="pb-4">
               <h3 className="mb-3 flex items-center gap-2 font-semibold text-black dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
