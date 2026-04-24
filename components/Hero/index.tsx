@@ -88,7 +88,7 @@ const Hero = () => {
         <div className="max-w-c-1390 mx-auto px-4 md:px-8 2xl:px-0">
           <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-center xl:gap-32.5">
             <div className="w-full text-center lg:w-1/2">
-              <h3 className="text-md mb-6 font-bold text-black md:text-4xl dark:text-white">
+              <h3 className="mb-6 text-2xl font-bold text-black md:text-4xl dark:text-white">
                 Pemerintah Daerah Sumatera Barat
               </h3>
 

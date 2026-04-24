@@ -5,6 +5,7 @@ import SectionHeader from "@/components/Common/SectionHeader";
 
 type Props = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export const metadata: Metadata = {
@@ -20,10 +21,20 @@ async function getCategoryData(slug: string) {
   return res.json();
 }
 
-const CategoryPage = async ({ params }: Props) => {
+const CategoryPage = async ({ params, searchParams }: Props) => {
   const { slug } = await params;
+  const resolvedSearchParams = await searchParams;
+  const searchQuery = typeof resolvedSearchParams.search === 'string' ? resolvedSearchParams.search : '';
+  
   const result = await getCategoryData(slug);
-  const data = result?.data || [];
+  let data = result?.data || [];
+  
+  if (searchQuery) {
+    data = data.filter((item: any) => 
+      item.title?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+  
   const baseUrl = "https://api-web.sumbarprov.go.id";
 
   return (

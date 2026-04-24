@@ -75,7 +75,7 @@ const FunFact = () => {
             height={384}
             src="/images/shape/shape-04.png"
             alt="Man"
-            className="absolute -left-15 -top-25 -z-1 lg:left-0"
+            className="absolute -left-10 -top-15 -z-1 w-[200px] md:w-[335px] lg:left-0 lg:-top-25"
           />
           <Image
             width={132}
@@ -121,7 +121,7 @@ const FunFact = () => {
               </span>
             </div>
 
-            <h2 className="mb-4 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle3">
+            <h2 className="mb-4 text-2xl font-bold text-black dark:text-white sm:text-3xl xl:text-sectiontitle3">
               Ikuti Kami di Instagram
             </h2>
             <p className="mx-auto lg:w-11/12">

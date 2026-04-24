@@ -67,8 +67,8 @@ const VideoGallery = async () => {
     <section className="py-10 lg:py-15 xl:py-20">
       <div className="max-w-c-1315 mx-auto px-4 md:px-8 xl:px-0">
         {/* <!-- Section Header Start --> */}
-        <div className="flex flex-wrap items-center justify-between gap-5 border-b border-stroke pb-6 dark:border-strokedark">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-5 border-b border-stroke pb-6 dark:border-strokedark sm:justify-between">
+          <div className="flex items-center gap-4 text-center sm:text-left">
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-500/10">
               <svg
                 width="24"
@@ -87,7 +87,7 @@ const VideoGallery = async () => {
           </div>
           <Link
             href="/galeri/video"
-            className="flex items-center gap-2 font-semibold text-blue-500 duration-300 hover:gap-3"
+            className="flex items-center gap-2 font-semibold text-blue-500 duration-300 hover:gap-3 text-sm sm:text-base"
           >
             Lihat Semua Video
             <svg
