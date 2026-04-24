@@ -85,6 +85,12 @@ const menuData: Menu[] = [
         newTab: false,
         path: "/jadwal-dokter",
       },
+      {
+        id: 36,
+        title: "Info Tempat Tidur",
+        newTab: false,
+        path: "/info-tempat-tidur",
+      },
     ],
   },
   {

@@ -9,7 +9,7 @@ const quickLinks = [
   { title: "Publikasi", path: "/kategori/berita-utama" },
   { title: "Perpustakaan", path: "/perpustakaan/laporan-kinerja-instansi-pemerintah" },
   { title: "Jadwal Dokter", path: "/jadwal-dokter" },
-  { title: "Kontak", path: "/contact" },
+  { title: "Info Tempat Tidur", path: "/info-tempat-tidur" },
 ];
 
 const CTA = () => {

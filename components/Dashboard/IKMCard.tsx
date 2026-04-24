@@ -20,7 +20,7 @@ const IKMCard = () => {
       setLoading(true);
       setMessage(null);
       try {
-        const response = await fetch("https://dev-sepakat.sumbarprov.go.id/api/v1/penilaian", {
+        const response = await fetch("https://sepakat.sumbarprov.go.id/api/v1/penilaian", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

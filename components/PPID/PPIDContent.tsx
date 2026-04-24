@@ -34,7 +34,7 @@ const PPIDContent = () => {
         }
         const responseData = await response.json();
         
-        let list = [];
+        let list: any[] = [];
         if (Array.isArray(responseData)) {
           list = responseData;
         } else if (responseData && typeof responseData === 'object') {
