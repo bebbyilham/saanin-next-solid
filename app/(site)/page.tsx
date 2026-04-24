@@ -36,9 +36,9 @@ export default function Home() {
       <PengumumanHome />
       <Brands />
       <Feature />
-      <Integration />
-      <FunFact />
+      {/* <Integration /> */}
       <About />
+      <FunFact />
     </main>
   );
 }
