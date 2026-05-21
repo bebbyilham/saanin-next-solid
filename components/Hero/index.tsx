@@ -40,7 +40,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="overflow-hidden pt-35 pb-20 md:pt-40 xl:pt-46 xl:pb-25">
+      <section className="overflow-hidden pt-28 pb-20 md:pt-32 xl:pt-36 xl:pb-25">
         <div className="max-w-c-1390 mx-auto px-4 md:px-8 2xl:px-0">
           <div className="animate_right">
             {isLoading ? (

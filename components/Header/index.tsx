@@ -29,13 +29,19 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-99999 w-full bg-white py-7 dark:bg-black ${
-        stickyMenu
-          ? "py-4! shadow-sm transition duration-100"
-          : ""
+      className={`fixed left-1/2 -translate-x-1/2 z-99999 w-[95%] max-w-c-1390 transition-all duration-300 ${
+        navigationOpen
+          ? "top-4 bg-blue-100/95 dark:bg-blue-950/95 border border-blue-300/60 dark:border-blue-800/60 rounded-[2rem] shadow-2xl py-4 px-6"
+          : stickyMenu
+            ? "top-2 bg-blue-500/20 dark:bg-blue-950/55 border border-blue-300/40 dark:border-blue-700/40 rounded-full shadow-xl shadow-blue-500/12 py-3 px-6 md:px-8"
+            : "top-4 bg-blue-500/15 dark:bg-blue-950/40 border border-blue-300/30 dark:border-blue-800/30 rounded-full shadow-lg shadow-blue-500/8 py-4 px-6 md:px-8"
       }`}
+      style={{
+        backdropFilter: navigationOpen ? "blur(40px)" : "blur(24px)",
+        WebkitBackdropFilter: navigationOpen ? "blur(40px)" : "blur(24px)",
+      }}
     >
-      <div className="max-w-c-1390 relative mx-auto items-center justify-between px-4 md:px-8 xl:flex 2xl:px-0">
+      <div className="relative w-full items-center justify-between xl:flex">
         <div className="flex w-full items-center justify-between xl:w-1/4">
           <a href="/">
             <Image
@@ -99,7 +105,7 @@ const Header = () => {
         <div
           className={`invisible h-0 w-full items-center justify-between xl:visible xl:flex xl:h-auto xl:w-full ${
             navigationOpen &&
-            "navbar shadow-solid-5 dark:bg-blacksection visible! mt-4 h-auto max-h-[400px] rounded-md bg-white p-7.5 xl:h-auto xl:p-0 xl:shadow-none xl:dark:bg-transparent"
+            "navbar visible! mt-4 h-auto max-h-[400px] bg-transparent p-4 border-none xl:h-auto xl:p-0 xl:shadow-none xl:dark:bg-transparent xl:bg-transparent xl:border-none"
           }`}
         >
           <nav>
@@ -109,13 +115,17 @@ const Header = () => {
                   {menuItem.submenu ? (
                     <>
                       <button
-                        onClick={() => setDropdownToggler(dropdownToggler === key ? null : key)}
-                        className="hover:text-primary flex cursor-pointer items-center justify-between gap-3"
+                        onClick={() =>
+                          setDropdownToggler(
+                            dropdownToggler === key ? null : key,
+                          )
+                        }
+                        className="flex cursor-pointer items-center justify-between gap-3 text-blue-900 dark:text-blue-200 hover:text-blue-600 dark:hover:text-blue-300 font-medium duration-300"
                       >
                         {menuItem.title}
                         <span>
                           <svg
-                            className="fill-waterloo group-hover:fill-primary h-3 w-3 cursor-pointer"
+                            className="fill-blue-900 dark:fill-blue-200 group-hover:fill-blue-600 dark:group-hover:fill-blue-300 h-3 w-3 cursor-pointer duration-300"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
                           >
@@ -125,10 +135,12 @@ const Header = () => {
                       </button>
 
                       <ul
-                        className={`dropdown ${dropdownToggler === key ? "flex" : ""}`}
+                        className={`dropdown ${
+                          dropdownToggler === key ? "flex" : ""
+                        }`}
                       >
                         {menuItem.submenu.map((item, key) => (
-                          <li key={key} className="hover:text-primary">
+                          <li key={key} className="text-blue-900 dark:text-blue-200 hover:text-blue-600 dark:hover:text-blue-300 duration-300">
                             <Link href={item.path || "#"}>{item.title}</Link>
                           </li>
                         ))}
@@ -139,8 +151,8 @@ const Header = () => {
                       href={`${menuItem.path}`}
                       className={
                         pathUrl === menuItem.path
-                          ? "text-primary hover:text-primary"
-                          : "hover:text-primary"
+                          ? "text-blue-600 dark:text-blue-400 font-semibold"
+                          : "text-blue-900 dark:text-blue-200 hover:text-blue-600 dark:hover:text-blue-300 font-medium duration-300"
                       }
                     >
                       {menuItem.title}
