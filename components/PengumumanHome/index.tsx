@@ -22,23 +22,23 @@ const PengumumanHome = async () => {
   if (data.length === 0) return null;
 
   return (
-    <section className="py-20 lg:py-25 xl:py-30">
+    <section className="py-10 lg:py-15 xl:py-20">
       <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
-        <div className="flex flex-wrap items-center justify-center gap-5 border-b border-stroke pb-6 dark:border-strokedark mb-10 sm:justify-between">
+        <div className="flex flex-wrap items-center justify-center gap-5 border-b border-blue-200/20 pb-6 dark:border-blue-800/20 mb-10 sm:justify-between">
           <div className="flex items-center gap-4 text-center sm:text-left">
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-500/10">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="stroke-blue-500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-200/20 dark:border-blue-800/20">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="stroke-blue-500 dark:stroke-blue-400" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-black dark:text-white xl:text-itemtitle2">
+            <h2 className="text-2xl font-bold text-blue-950 dark:text-blue-100 xl:text-itemtitle2">
               Pengumuman Terbaru
             </h2>
           </div>
           <Link
             href="/pengumuman"
-            className="flex items-center gap-2 font-semibold text-blue-500 duration-300 hover:gap-3 text-sm sm:text-base"
+            className="flex items-center gap-2 font-semibold text-blue-500 duration-300 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:gap-3 text-sm sm:text-base"
           >
             Lihat Semua Pengumuman
             <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,9 +55,13 @@ const PengumumanHome = async () => {
               <Link
                 key={key}
                 href={`/pengumuman/${item.slug}`}
-                className="animate_top group block overflow-hidden rounded-xl bg-white shadow-solid-8 dark:bg-blacksection"
+                className="animate_top group block overflow-hidden rounded-xl bg-blue-500/5 border border-blue-200/20 shadow-lg shadow-blue-500/3 dark:border-blue-800/20 dark:bg-blue-950/10 hover:border-blue-400/40 hover:bg-blue-500/10 hover:shadow-blue-500/10 transition-all duration-300"
+                style={{
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)"
+                }}
               >
-                <div className="relative h-[220px] w-full overflow-hidden">
+                <div className="relative h-[220px] w-full overflow-hidden border-b border-blue-200/10 dark:border-blue-800/10">
                   {imageUrl ? (
                     <Image
                       src={imageUrl}
@@ -67,12 +71,12 @@ const PengumumanHome = async () => {
                       unoptimized
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-800 text-sm">
+                    <div className="w-full h-full flex items-center justify-center bg-blue-500/10 dark:bg-blue-950/20 text-sm font-semibold text-blue-400/70">
                       No Image
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 duration-300 group-hover:opacity-100">
-                    <div className="absolute bottom-0 p-4">
+                  <div className="absolute inset-0 bg-linear-to-t from-blue-950/80 via-transparent to-transparent opacity-0 duration-300 group-hover:opacity-100 flex items-end">
+                    <div className="p-4 w-full">
                       <h3 className="line-clamp-2 text-sm font-semibold text-white">
                         {item.title}
                       </h3>
@@ -80,10 +84,15 @@ const PengumumanHome = async () => {
                   </div>
                 </div>
                 <div className="p-4">
-                  <p className="line-clamp-1 text-sm font-medium text-black dark:text-white">
+                  <p className="line-clamp-1 text-sm font-semibold text-blue-950 dark:text-blue-100 transition-colors duration-300 group-hover:text-blue-500 dark:group-hover:text-blue-400">
                     {item.title}
                   </p>
-                  <p className="mt-1 text-xs text-waterloo">{item.created_at}</p>
+                  <p className="mt-1.5 text-xs font-semibold text-blue-500/80 dark:text-blue-400/80 flex items-center gap-1">
+                    <svg className="fill-current text-blue-500/70 dark:text-blue-400/70" width="12" height="12" viewBox="0 0 24 24">
+                      <path d="M19,4H18V2H16V4H8V2H6V4H5C3.89,4 3,4.9 3,6V20C3,21.1 3.89,22 5,22H19C20.1,22 21,21.1 21,20V6C21,4.9 20.1,4 19,4M19,20H5V10H19V20M19,8H5V6H19V8Z" />
+                    </svg>
+                    {item.created_at}
+                  </p>
                 </div>
               </Link>
             );

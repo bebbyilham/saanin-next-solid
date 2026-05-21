@@ -18,10 +18,10 @@ import PengumumanHome from "@/components/PengumumanHome";
 import Testimonial from "@/components/Testimonial";
 
 export const metadata: Metadata = {
-  title: "Rumah Sakit Jiwa Prof HB. Saanin Padang",
+  title: "Rumah Sakit Jiwa Prof HB. Saanin",
 
   // other metadata
-  description: "Rumah Sakit Jiwa Prof HB. Saanin Padang",
+  description: "Rumah Sakit Jiwa Prof HB. Saanin",
 };
 
 export default function Home() {

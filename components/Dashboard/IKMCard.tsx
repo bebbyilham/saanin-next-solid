@@ -60,9 +60,15 @@ const IKMCard = () => {
   }, [period]);
 
   return (
-    <div className="rounded-xl border border-stroke bg-white p-6 shadow-solid-8 dark:border-strokedark dark:bg-blacksection">
-      <div className="mb-6 flex items-center justify-between border-b border-stroke pb-4 dark:border-strokedark">
-        <h3 className="text-xl font-bold text-black dark:text-white">
+    <div 
+      className="rounded-2xl bg-blue-500/5 dark:bg-blue-950/20 border border-blue-200/30 dark:border-blue-800/20 shadow-lg shadow-blue-500/3 p-6"
+      style={{
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)"
+      }}
+    >
+      <div className="mb-6 flex items-center justify-between border-b border-blue-200/30 dark:border-blue-800/30 pb-4">
+        <h3 className="text-xl font-bold text-blue-950 dark:text-blue-100">
           Indeks Kepuasan Masyarakat
         </h3>
       </div>
@@ -71,10 +77,10 @@ const IKMCard = () => {
         <select
           value={period}
           onChange={(e) => setPeriod(e.target.value as PeriodType)}
-          className="rounded-lg border border-stroke px-4 py-2 text-sm font-medium text-black outline-none focus:border-primary dark:border-strokedark dark:bg-black dark:text-white"
+          className="rounded-full bg-blue-500/8 dark:bg-blue-950/30 border border-blue-200/30 dark:border-blue-800/30 px-4 py-2 text-sm font-semibold text-blue-950 dark:text-blue-200 outline-none focus:ring-2 focus:ring-blue-400/40"
         >
           {periods.map((p) => (
-            <option key={p.value} value={p.value}>
+            <option key={p.value} value={p.value} className="bg-white dark:bg-blue-950 text-blue-950 dark:text-blue-100">
               {p.label}
             </option>
           ))}
@@ -83,41 +89,41 @@ const IKMCard = () => {
 
       {loading ? (
         <div className="flex h-[200px] items-center justify-center">
-             <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+             <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
         </div>
       ) : message ? (
         <div className="flex h-[200px] items-center justify-center">
-          <p className="text-sm font-medium text-waterloo dark:text-manatee">{message}</p>
+          <p className="text-sm font-semibold text-blue-500 dark:text-blue-400">{message}</p>
         </div>
       ) : data && (
         <>
           <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-lg border border-stroke bg-alabaster p-4 text-center dark:border-strokedark dark:bg-black">
-              <span className="text-[10px] font-bold uppercase text-waterloo">IKM</span>
-              <p className="text-3xl font-bold text-primary">{data.ikm}</p>
+            <div className="rounded-xl border border-blue-200/20 bg-blue-500/10 p-4 text-center dark:border-blue-800/20 dark:bg-blue-950/30">
+              <span className="text-[10px] font-bold uppercase text-blue-500 dark:text-blue-400">IKM</span>
+              <p className="text-3xl font-extrabold text-blue-600 dark:text-blue-400">{data.ikm}</p>
             </div>
-            <div className="rounded-lg border border-stroke bg-alabaster p-4 text-center dark:border-strokedark dark:bg-black">
-              <span className="text-[10px] font-bold uppercase text-waterloo">KONVERSI IKM</span>
-              <p className="text-3xl font-bold text-black dark:text-white">{data.konversi_ikm.toFixed(2)}</p>
+            <div className="rounded-xl border border-blue-200/20 bg-blue-500/10 p-4 text-center dark:border-blue-800/20 dark:bg-blue-950/30">
+              <span className="text-[10px] font-bold uppercase text-blue-500 dark:text-blue-400">KONVERSI IKM</span>
+              <p className="text-3xl font-extrabold text-blue-950 dark:text-blue-100">{data.konversi_ikm.toFixed(2)}</p>
             </div>
-            <div className="rounded-lg border border-stroke bg-alabaster p-4 text-center dark:border-strokedark dark:bg-black">
-              <span className="text-[10px] font-bold uppercase text-waterloo">NILAI LAYANAN</span>
-              <p className="text-xl font-bold text-black dark:text-white leading-tight mt-1">{data.nilai_layanan}</p>
+            <div className="rounded-xl border border-blue-200/20 bg-blue-500/10 p-4 text-center dark:border-blue-800/20 dark:bg-blue-950/30 flex flex-col justify-center">
+              <span className="text-[10px] font-bold uppercase text-blue-500 dark:text-blue-400">NILAI LAYANAN</span>
+              <p className="text-[16px] md:text-lg font-extrabold text-blue-950 dark:text-blue-100 leading-tight mt-1">{data.nilai_layanan}</p>
             </div>
           </div>
 
           <div className="mt-8">
-            <h4 className="mb-4 text-sm font-bold text-waterloo uppercase">
+            <h4 className="mb-4 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wide">
               Data Responden ({data.total_responden})
             </h4>
             <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-lg border border-stroke bg-alabaster p-4 dark:border-strokedark dark:bg-black">
-                <span className="text-[10px] font-bold uppercase text-waterloo">LAKI-LAKI</span>
-                <p className="text-2xl font-bold text-black dark:text-white">{data.laki_laki}</p>
+              <div className="rounded-xl border border-blue-200/20 bg-blue-500/10 p-4 dark:border-blue-800/20 dark:bg-blue-950/30">
+                <span className="text-[10px] font-bold uppercase text-blue-500 dark:text-blue-400">LAKI-LAKI</span>
+                <p className="text-2xl font-extrabold text-blue-950 dark:text-blue-100">{data.laki_laki}</p>
               </div>
-              <div className="rounded-lg border border-stroke bg-alabaster p-4 dark:border-strokedark dark:bg-black">
-                <span className="text-[10px] font-bold uppercase text-waterloo">PEREMPUAN</span>
-                <p className="text-2xl font-bold text-black dark:text-white">{data.perempuan}</p>
+              <div className="rounded-xl border border-blue-200/20 bg-blue-500/10 p-4 dark:border-blue-800/20 dark:bg-blue-950/30">
+                <span className="text-[10px] font-bold uppercase text-blue-500 dark:text-blue-400">PEREMPUAN</span>
+                <p className="text-2xl font-extrabold text-blue-950 dark:text-blue-100">{data.perempuan}</p>
               </div>
             </div>
           </div>

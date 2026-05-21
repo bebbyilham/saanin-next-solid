@@ -31,9 +31,10 @@ const NewsDetailPage = async ({ params }: Props) => {
 
   if (!data) {
     return (
-      <section className="pb-20 pt-35 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
-        <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
-          <h1 className="text-2xl font-bold">Berita tidak ditemukan</h1>
+      <section className="relative z-10 overflow-hidden pt-35 pb-20 lg:pt-45 lg:pb-25 xl:pt-50 xl:pb-30">
+        <div className="absolute left-1/4 top-1/4 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-tr from-blue-400/20 to-cyan-400/10 blur-[120px]" />
+        <div className="max-w-c-1390 mx-auto px-4 md:px-8 2xl:px-0 text-center">
+          <h1 className="text-2xl font-bold text-blue-950 dark:text-blue-200">Berita tidak ditemukan</h1>
         </div>
       </section>
     );
@@ -43,143 +44,125 @@ const NewsDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-      {/* <!-- Hero / Title Banner Section Start --> */}
-      <section className="relative z-10 overflow-hidden bg-zumthor pb-20 pt-35 dark:bg-black lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50">
-        <div className="absolute left-0 top-0 -z-1 h-full w-full">
-          <Image
-            fill
-            src="/images/hero/hero2.png"
-            alt="Hero Background"
-            className="object-cover object-[left_center] opacity-20 dark:opacity-10"
-          />
-        </div>
+      <div className="relative z-10 overflow-hidden pt-30 pb-20 lg:pt-35 lg:pb-25 xl:pt-40 xl:pb-30">
+        {/* Backlight Glows - Pendar Cahaya Latar Belakang untuk Efek Glassmorphic Maksimal */}
+        <div className="absolute left-1/4 top-10 -z-10 h-[400px] w-[400px] rounded-full bg-gradient-to-tr from-blue-400/25 to-cyan-400/15 blur-[130px]" />
+        <div className="absolute right-1/4 bottom-10 -z-10 h-[450px] w-[450px] rounded-full bg-gradient-to-tr from-indigo-400/20 to-blue-400/15 blur-[160px]" />
 
-        <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
-          <div className="flex flex-col items-center text-center">
-            <h2 className="mb-5 text-4xl font-bold text-black dark:text-white md:text-5xl xl:text-6xl">
+        <div className="max-w-c-1390 mx-auto px-4 md:px-8 2xl:px-0">
+          {/* Header Banner - Panel Kaca Biru Premium */}
+          <div 
+            className="mb-10 w-full rounded-2xl bg-blue-500/5 dark:bg-blue-950/20 border border-blue-200/25 dark:border-blue-800/25 p-8 md:p-12 shadow-lg shadow-blue-500/3 flex flex-col items-center text-center animate_top"
+            style={{
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)"
+            }}
+          >
+            <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-4 py-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 border border-blue-200/30">
+              Berita & Publikasi
+            </div>
+            
+            <h1 className="mb-6 text-3xl font-extrabold text-blue-950 md:text-4xl xl:text-5xl dark:text-blue-100 leading-tight max-w-[900px]">
               {data.title}
-            </h2>
+            </h1>
 
-            <ul className="flex flex-wrap items-center justify-center gap-4.5">
-              <li className="flex items-center gap-2.5">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-solid-10 dark:bg-black dark:text-white">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="fill-current"
-                  >
-                    <path d="M9 9C10.6569 9 12 7.65685 12 6C12 4.34315 10.6569 3 9 3C7.34315 3 6 4.34315 6 6C6 7.65685 7.34315 9 9 9Z" />
-                    <path d="M15 14.25C15 12.1789 12.3137 10.5 9 10.5C5.68629 10.5 3 12.1789 3 14.25V15H15V14.25Z" />
-                  </svg>
-                </span>
-                <p>
-                  <span className="text-black dark:text-white">By: </span>
-                  {data.created_by || "Admin"}
-                </p>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-solid-10 dark:bg-black dark:text-white">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="fill-current"
-                  >
-                    <path d="M14.25 2.25H3.75C2.92157 2.25 2.25 2.92157 2.25 3.75V14.25C2.25 15.0784 2.92157 15.75 3.75 15.75H14.25C15.0784 15.75 15.75 15.0784 15.75 14.25V3.75C15.75 2.92157 15.0784 2.25 14.25 2.25ZM3.75 3.75H14.25V5.25H3.75V3.75ZM14.25 14.25H3.75V6.75H14.25V14.25Z" />
-                  </svg>
-                </span>
-                <p>
-                  <span className="text-black dark:text-white">Date: </span>
-                  {data.created_at}
-                </p>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-solid-10 dark:bg-black dark:text-white">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="fill-current"
-                  >
-                    <path d="M13.5 4.5H2.5C1.94772 4.5 1.5 4.94772 1.5 5.5V12.5C1.5 13.0523 1.94772 13.5 2.5 13.5H13.5C14.0523 13.5 14.5 13.0523 14.5 12.5V5.5C14.5 4.94772 14.0523 4.5 13.5 4.5Z" />
-                    <path d="M10.5 2.5H5.5C4.94772 2.5 4.5 2.94772 4.5 3.5V4.5H11.5V3.5C11.5 2.94772 11.0523 2.5 10.5 2.5Z" />
-                  </svg>
-                </span>
-                <p>
-                  <span className="text-black dark:text-white">Category: </span>
-                  {data.category}
-                </p>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-solid-10 dark:bg-black dark:text-white">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                </span>
-                <p>
-                  <span className="text-black dark:text-white">Dilihat: </span>
-                  {data.hits ? data.hits : "0"}
-                </p>
-              </li>
+            <ul className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              {data.created_by && (
+                <li className="flex items-center gap-2 rounded-full bg-blue-500/5 px-4 py-2 border border-blue-200/20 text-sm font-semibold text-blue-950 dark:text-blue-200">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </span>
+                  <span>{data.created_by || "Admin"}</span>
+                </li>
+              )}
+              {data.created_at && (
+                <li className="flex items-center gap-2 rounded-full bg-blue-500/5 px-4 py-2 border border-blue-200/20 text-sm font-semibold text-blue-950 dark:text-blue-200">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                      <line x1="16" y1="2" x2="16" y2="6" />
+                      <line x1="8" y1="2" x2="8" y2="6" />
+                      <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                  </span>
+                  <span>{data.created_at}</span>
+                </li>
+              )}
+              {data.category && (
+                <li className="flex items-center gap-2 rounded-full bg-blue-500/5 px-4 py-2 border border-blue-200/20 text-sm font-semibold text-blue-950 dark:text-blue-200">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                    </svg>
+                  </span>
+                  <span>{data.category}</span>
+                </li>
+              )}
+              {data.hits !== undefined && (
+                <li className="flex items-center gap-2 rounded-full bg-blue-500/5 px-4 py-2 border border-blue-200/20 text-sm font-semibold text-blue-950 dark:text-blue-200">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </span>
+                  <span>{data.hits || "0"} Dilihat</span>
+                </li>
+              )}
             </ul>
           </div>
-        </div>
-      </section>
-      {/* <!-- Hero / Title Banner Section End --> */}
 
-      <section className="pb-20 pt-15 lg:pb-25 lg:pt-20 xl:pb-30 xl:pt-25">
-        <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           <div className="flex flex-col gap-7.5 lg:flex-row xl:gap-12.5">
+            {/* Main Content Area */}
             <div className="lg:w-2/3">
-              <div className="animate_top rounded-md border border-stroke bg-white p-7.5 shadow-solid-13 dark:border-strokedark dark:bg-blacksection md:p-10">
-                <div className="mb-10 w-full overflow-hidden ">
-                  <div className="relative aspect-97/60 w-full sm:aspect-97/44">
-                    {imageUrl && (
+              <div 
+                className="animate_top rounded-2xl bg-blue-500/5 dark:bg-blue-950/20 border border-blue-200/30 dark:border-blue-800/25 p-6 md:p-10 shadow-lg shadow-blue-500/3"
+                style={{
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)"
+                }}
+              >
+                {imageUrl && (
+                  <div className="mb-10 w-full overflow-hidden rounded-xl border border-blue-200/20">
+                    <div className="relative aspect-[16/9] w-full">
                       <Image
                         src={imageUrl}
                         alt={data.title}
                         fill
-                        className="rounded-md object-cover object-center"
+                        className="object-cover object-center"
                         unoptimized
                       />
-                    )}
+                    </div>
                   </div>
+                )}
+
+                <div
+                  className="blog-details text-blue-950 dark:text-blue-100/90 leading-relaxed font-medium prose prose-blue dark:prose-invert max-w-none prose-headings:text-blue-950 dark:prose-headings:text-blue-200 prose-a:text-blue-600 dark:prose-a:text-blue-400"
+                  dangerouslySetInnerHTML={{ __html: data.isi || "" }}
+                ></div>
+
+                <div className="mt-10 border-t border-blue-100/40 dark:border-blue-900/30 pt-7.5">
+                  <NewsNavigation currentSlug={slug} />
                 </div>
 
-                <div className="blog-details" dangerouslySetInnerHTML={{ __html: data.isi || "" }}>
+                <div className="mt-5 border-t border-blue-100/40 dark:border-blue-900/30 pt-7.5">
+                  <SharePost />
                 </div>
-
-                <NewsNavigation currentSlug={slug} />
-
-                <SharePost />
               </div>
             </div>
 
-            <div className="md:w-1/2 lg:w-[32%]">
+            {/* Sidebar Area */}
+            <div className="md:w-1/2 lg:w-[32%] flex flex-col gap-1">
               <SidebarNews />
               <SidebarPhotos />
               <SidebarVideos />
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };

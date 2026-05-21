@@ -38,40 +38,52 @@ const SingleDoctor = ({
       whileInView="visible"
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="animate_top z-40 rounded-lg border border-white bg-white p-7.5 shadow-solid-3 transition-all hover:shadow-solid-4 dark:border-strokedark dark:bg-blacksection dark:hover:bg-hoverdark xl:p-10"
+      className="animate_top z-40 rounded-2xl border border-blue-200/20 bg-blue-500/5 dark:bg-blue-950/10 dark:border-blue-800/20 p-6.5 shadow-lg shadow-blue-500/3 hover:border-blue-400/40 hover:bg-blue-500/10 hover:shadow-blue-500/10 transition-all duration-300 hover:scale-[1.02] group"
+      style={{
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)"
+      }}
     >
-      <div className="relative mb-7.5 flex h-[400px] w-full items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+      <div className="relative mb-6 flex h-[350px] w-full items-center justify-center overflow-hidden rounded-xl border border-blue-200/20 dark:border-blue-800/20 bg-blue-500/5 dark:bg-blue-950/30 shadow-inner">
         {hasImage && !imageError ? (
           <Image
             src={foto_pegawai}
             alt={dokter_nama}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             onError={() => setImageError(true)}
             unoptimized
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-primary/10 text-2xl font-bold text-primary">
+          <div className="flex h-full w-full items-center justify-center bg-blue-500/10 text-3xl font-bold text-blue-500 dark:text-blue-400">
             {getInitials(dokter_nama)}
           </div>
         )}
+        {/* Glow overlay effect */}
+        <div className="absolute inset-0 bg-linear-to-t from-blue-950/40 via-transparent to-transparent opacity-0 duration-300 group-hover:opacity-100" />
       </div>
 
-      <h3 className="mb-2 text-lg font-semibold text-black dark:text-white xl:text-itemtitle2">
-        <button
-          onClick={() => onViewSchedule(doctor)}
-          className="text-left hover:text-primary transition-colors"
-          title={dokter_nama}
-        >
-          {displayName}
-        </button>
-      </h3>
-      <p className="mb-5 text-sm text-gray-600 dark:text-gray-400">{specialty}</p>
+      <div className="min-h-[110px] flex flex-col justify-start">
+        <h3 className="text-lg font-bold text-blue-950 dark:text-blue-100 xl:text-xl line-clamp-2 leading-snug">
+          <button
+            onClick={() => onViewSchedule(doctor)}
+            className="text-left hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
+            title={dokter_nama}
+          >
+            {displayName}
+          </button>
+        </h3>
+        <div className="mt-2.5">
+          <span className="inline-block rounded-full bg-blue-500/10 border border-blue-200/20 dark:border-blue-800/20 px-3.5 py-1 text-xs font-bold text-blue-600 dark:text-blue-400 shadow-sm">
+            {specialty}
+          </span>
+        </div>
+      </div>
 
       <button
         type="button"
         onClick={() => onViewSchedule(doctor)}
-        className="flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-white transition-all hover:bg-primaryho"
+        className="w-full flex items-center justify-center gap-2 rounded-full bg-blue-500/20 border border-blue-200/30 text-blue-950 dark:text-blue-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white backdrop-blur-md shadow-md transition-all duration-300 py-2.5 font-bold text-sm mt-4"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

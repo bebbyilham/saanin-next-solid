@@ -45,16 +45,22 @@ const Feature = () => {
   return (
     <>
       {/* <!-- ===== Features Start ===== --> */}
-      <section id="features" className="py-20 lg:py-25 xl:py-30">
+      <section id="features" className="relative py-20 lg:py-25 xl:py-30 overflow-hidden">
+        {/* Background Decorative Glow Circles */}
+        <div className="absolute top-[15%] left-[-15%] -z-10 h-[400px] w-[400px] rounded-full bg-blue-400/8 blur-[120px] dark:bg-blue-600/5" />
+        <div className="absolute bottom-[10%] right-[-15%] -z-10 h-[450px] w-[450px] rounded-full bg-blue-500/8 blur-[130px] dark:bg-blue-500/5" />
+
         <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0">
           {/* <!-- Section Title Start --> */}
-          <SectionHeader
-            headerInfo={{
-              title: "JADWAL DOKTER",
-              subtitle: "Tim Medis Profesional Kami",
-              description: `Temukan tim dokter ahli kami dan jadwal praktik mereka. Kami berkomitmen memberikan pelayanan kesehatan terbaik bagi Anda dan keluarga.`,
-            }}
-          />
+          <div className="animate_top mx-auto text-center mb-12">
+            <SectionHeader
+              headerInfo={{
+                title: "JADWAL DOKTER",
+                subtitle: "Tim Medis Profesional Kami",
+                description: `Temukan tim dokter ahli kami dan jadwal praktik mereka. Kami berkomitmen memberikan pelayanan kesehatan terbaik bagi Anda dan keluarga.`,
+              }}
+            />
+          </div>
           {/* <!-- Section Title End --> */}
 
           {loading ? (
@@ -75,14 +81,16 @@ const Feature = () => {
           ) : (
             <div className="mt-12.5 lg:mt-15 xl:mt-20">
               <Swiper
-                spaceBetween={30}
+                spaceBetween={40}
                 slidesPerView={1}
                 breakpoints={{
                   768: {
                     slidesPerView: 2,
+                    spaceBetween: 35,
                   },
                   1024: {
                     slidesPerView: 3,
+                    spaceBetween: 40,
                   },
                 }}
                 pagination={{ clickable: true }}
@@ -91,10 +99,10 @@ const Feature = () => {
                   disableOnInteraction: false,
                 }}
                 modules={[Pagination, Autoplay]}
-                className="pb-16"
+                className="pb-20"
               >
                 {doctors.map((doctor, key) => (
-                  <SwiperSlide key={key}>
+                  <SwiperSlide key={key} className="pb-10">
                     <SingleDoctor
                       doctor={doctor}
                       onViewSchedule={handleViewSchedule}

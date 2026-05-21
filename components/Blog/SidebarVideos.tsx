@@ -34,16 +34,22 @@ const SidebarVideos = async () => {
   if (videos.length === 0) return null;
 
   return (
-    <div className="animate_top mb-8 overflow-hidden rounded-xl bg-white shadow-solid-8 border border-stroke dark:border-strokedark dark:bg-blacksection">
-      <div className="bg-gray-100 p-4 flex items-center justify-between">
-        <h4 className="flex items-center gap-2 text-[18px] font-bold text-black">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#006bff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <div 
+      className="animate_top mb-8 overflow-hidden rounded-2xl bg-blue-500/5 dark:bg-blue-950/20 border border-blue-200/30 dark:border-blue-800/20 shadow-lg shadow-blue-500/3"
+      style={{
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)"
+      }}
+    >
+      <div className="bg-blue-500/10 dark:bg-blue-950/30 border-b border-blue-200/30 dark:border-blue-800/30 p-4 flex items-center justify-between">
+        <h4 className="flex items-center gap-2 text-[18px] font-bold text-blue-950 dark:text-blue-100">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-blue-600 dark:text-blue-400">
             <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14v-4z"></path>
             <rect x="3" y="6" width="12" height="12" rx="2" ry="2"></rect>
           </svg>
           Video Terbaru
         </h4>
-        <Link href="/galeri/video" className="text-[11px] font-bold text-[#1e3a8a] hover:text-primary transition-colors duration-300">
+        <Link href="/galeri/video" className="text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300">
           Lihat Semua →
         </Link>
       </div>
@@ -59,7 +65,7 @@ const SidebarVideos = async () => {
               href={video.url} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="group relative block aspect-[16/9] w-full overflow-hidden rounded-lg"
+              className="group relative block aspect-[16/9] w-full overflow-hidden rounded-lg border border-blue-200/10"
             >
               {thumbnailUrl ? (
                 <Image 
@@ -70,14 +76,14 @@ const SidebarVideos = async () => {
                   unoptimized 
                 />
               ) : (
-                <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
-                  <span className="text-[10px]">No Thumbnail</span>
+                <div className="w-full h-full bg-blue-100/30 dark:bg-blue-950/30 flex items-center justify-center">
+                  <span className="text-[10px] text-blue-400">No Thumbnail</span>
                 </div>
               )}
               
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-300 group-hover:bg-black/40">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm border border-white text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <div className="absolute inset-0 flex items-center justify-center bg-blue-950/20 transition-colors duration-300 group-hover:bg-blue-950/40">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/20 backdrop-blur-sm border border-blue-300 text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-white">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>

@@ -29,12 +29,12 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed left-1/2 -translate-x-1/2 z-99999 w-[95%] max-w-c-1390 transition-all duration-300 ${
+      className={`max-w-c-1390 fixed left-1/2 z-99999 w-[95%] -translate-x-1/2 transition-all duration-300 ${
         navigationOpen
-          ? "top-4 bg-blue-100/95 dark:bg-blue-950/95 border border-blue-300/60 dark:border-blue-800/60 rounded-[2rem] shadow-2xl py-4 px-6"
+          ? "top-4 rounded-[2rem] border border-blue-300/60 bg-blue-100/95 px-6 py-4 shadow-2xl dark:border-blue-800/60 dark:bg-blue-950/95"
           : stickyMenu
-            ? "top-2 bg-blue-500/20 dark:bg-blue-950/55 border border-blue-300/40 dark:border-blue-700/40 rounded-full shadow-xl shadow-blue-500/12 py-3 px-6 md:px-8"
-            : "top-4 bg-blue-500/15 dark:bg-blue-950/40 border border-blue-300/30 dark:border-blue-800/30 rounded-full shadow-lg shadow-blue-500/8 py-4 px-6 md:px-8"
+          ? "top-2 rounded-full border border-blue-300/40 bg-blue-500/20 px-6 py-3 shadow-xl shadow-blue-500/12 md:px-8 dark:border-blue-700/40 dark:bg-blue-950/55"
+          : "top-4 rounded-full border border-blue-300/30 bg-blue-500/15 px-6 py-4 shadow-lg shadow-blue-500/8 md:px-8 dark:border-blue-800/30 dark:bg-blue-950/40"
       }`}
       style={{
         backdropFilter: navigationOpen ? "blur(40px)" : "blur(24px)",
@@ -105,7 +105,7 @@ const Header = () => {
         <div
           className={`invisible h-0 w-full items-center justify-between xl:visible xl:flex xl:h-auto xl:w-full ${
             navigationOpen &&
-            "navbar visible! mt-4 h-auto max-h-[400px] bg-transparent p-4 border-none xl:h-auto xl:p-0 xl:shadow-none xl:dark:bg-transparent xl:bg-transparent xl:border-none"
+            "navbar visible! mt-4 h-auto max-h-[400px] border-none bg-transparent p-4 xl:h-auto xl:border-none xl:bg-transparent xl:p-0 xl:shadow-none xl:dark:bg-transparent"
           }`}
         >
           <nav>
@@ -120,12 +120,12 @@ const Header = () => {
                             dropdownToggler === key ? null : key,
                           )
                         }
-                        className="flex cursor-pointer items-center justify-between gap-3 text-blue-900 dark:text-blue-200 hover:text-blue-600 dark:hover:text-blue-300 font-medium duration-300"
+                        className="flex cursor-pointer items-center justify-between gap-3 font-medium text-blue-900 duration-300 hover:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300"
                       >
                         {menuItem.title}
                         <span>
                           <svg
-                            className="fill-blue-900 dark:fill-blue-200 group-hover:fill-blue-600 dark:group-hover:fill-blue-300 h-3 w-3 cursor-pointer duration-300"
+                            className="h-3 w-3 cursor-pointer fill-blue-900 duration-300 group-hover:fill-blue-600 dark:fill-blue-200 dark:group-hover:fill-blue-300"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
                           >
@@ -140,7 +140,10 @@ const Header = () => {
                         }`}
                       >
                         {menuItem.submenu.map((item, key) => (
-                          <li key={key} className="text-blue-900 dark:text-blue-200 hover:text-blue-600 dark:hover:text-blue-300 duration-300">
+                          <li
+                            key={key}
+                            className="text-blue-900 duration-300 hover:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300"
+                          >
                             <Link href={item.path || "#"}>{item.title}</Link>
                           </li>
                         ))}
@@ -151,8 +154,8 @@ const Header = () => {
                       href={`${menuItem.path}`}
                       className={
                         pathUrl === menuItem.path
-                          ? "text-blue-600 dark:text-blue-400 font-semibold"
-                          : "text-blue-900 dark:text-blue-200 hover:text-blue-600 dark:hover:text-blue-300 font-medium duration-300"
+                          ? "font-semibold text-blue-600 dark:text-blue-400"
+                          : "font-medium text-blue-900 duration-300 hover:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300"
                       }
                     >
                       {menuItem.title}
@@ -166,7 +169,7 @@ const Header = () => {
           <div className="mt-7 flex items-center gap-6 xl:mt-0">
             <ThemeToggler />
             <Link
-              href="https://nextjstemplates.com/templates/solid"
+              href="https://rsjhbsaanin.com/"
               className="bg-primary text-regular hover:bg-primaryho flex items-center justify-center rounded-full px-7.5 py-2.5 text-white duration-300 ease-in-out"
             >
               Daftar Online

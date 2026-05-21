@@ -25,7 +25,7 @@ const SingleBrand = ({ brand }: { brand: Brand }) => {
         transition={{ duration: 1, delay: id }}
         viewport={{ once: true }}
         href={href}
-        className="animate_top relative block h-12 w-[180px]"
+        className="animate_top relative block h-12 w-[180px] opacity-65 hover:opacity-100 hover:scale-105 transition-all duration-300"
       >
         <Image
           className="transition-all duration-300 dark:hidden object-contain"
