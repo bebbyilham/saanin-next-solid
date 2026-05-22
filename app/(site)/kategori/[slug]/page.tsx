@@ -17,7 +17,7 @@ async function getCategoryData(slug: string) {
   const res = await fetch(
     `https://api-web.sumbarprov.go.id/api/category/${slug}/3107`,
     {
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     },
   );
   if (!res.ok) return null;
@@ -100,7 +100,7 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
                   >
                     {item.gambar ? (
                       <Image
-                        src={baseUrl + item.gambar}
+                        src={baseUrl + encodeURI(item.gambar)}
                         alt={item.title || "Post image"}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"

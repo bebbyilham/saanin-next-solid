@@ -11,7 +11,7 @@ const Blog = async () => {
     const response = await fetch(
       "https://api-web.sumbarprov.go.id/api/category/berita-utama/3107",
       {
-        next: { revalidate: 3600 },
+        next: { revalidate: 60 },
       }
     );
 
@@ -25,7 +25,7 @@ const Blog = async () => {
           title: item.title,
           slug: item.slug,
           metadata: item.category,
-          mainImage: `https://api-web.sumbarprov.go.id${item.gambar}`,
+          mainImage: `https://api-web.sumbarprov.go.id${item.gambar ? encodeURI(item.gambar) : ""}`,
           publishedAt: item.created_at,
         }));
       }

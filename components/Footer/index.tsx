@@ -342,8 +342,7 @@ const Footer = () => {
             >
               <p>
                 &copy; {new Date().getFullYear()} Diskominfotik Provinsi
-                Sumatera Barat | RS Jiwa Prof. HB. Saanin Padang. All rights
-                reserved
+                Sumatera Barat | RS Jiwa Prof. HB. Saanin. All rights reserved
               </p>
             </motion.div>
 

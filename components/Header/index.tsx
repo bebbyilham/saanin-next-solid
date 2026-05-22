@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Menu } from "@/types/menu";
 
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
@@ -11,8 +13,45 @@ const Header = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [dropdownToggler, setDropdownToggler] = useState<number | null>(null);
   const [stickyMenu, setStickyMenu] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   const pathUrl = usePathname();
+  const isWbsPage = pathUrl === "/whistle-blowing-system";
+
+  const wbsMenuData: Menu[] = [
+    {
+      id: 101,
+      title: "Beranda WBS",
+      path: "#wbs-hero",
+      newTab: false,
+    },
+    {
+      id: 102,
+      title: "Cara Kerja WBS",
+      path: "#wbs-alur",
+      newTab: false,
+    },
+    {
+      id: 103,
+      title: "FAQ WBS",
+      path: "#wbs-faq",
+      newTab: false,
+    },
+    {
+      id: 104,
+      title: "Lokasi WBS",
+      path: "#wbs-lokasi",
+      newTab: false,
+    },
+    {
+      id: 105,
+      title: "Portal Utama ↗",
+      path: "/",
+      newTab: false,
+    },
+  ];
+
+  const currentMenu = isWbsPage ? wbsMenuData : menuData;
 
   // Sticky menu
   const handleStickyMenu = () => {
@@ -25,7 +64,58 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleStickyMenu);
-  });
+    return () => {
+      window.removeEventListener("scroll", handleStickyMenu);
+    };
+  }, []);
+
+  // Track active WBS section on scroll
+  useEffect(() => {
+    if (!isWbsPage) return;
+
+    const handleScrollActiveSection = () => {
+      const wbsSections = ["wbs-hero", "wbs-alur", "wbs-faq", "wbs-lokasi"];
+      const scrollPosition = window.scrollY + 140; // Offset to match where the section comes into view
+
+      let active = "";
+      for (const sectionId of wbsSections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            active = `#${sectionId}`;
+            break;
+          }
+        }
+      }
+
+      // If we scroll to the bottom of the page
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 50
+      ) {
+        active = "#wbs-lokasi";
+      }
+
+      // If we're right at the top
+      if (window.scrollY < 50) {
+        active = "#wbs-hero";
+      }
+
+      if (active) {
+        setActiveSection(active);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollActiveSection);
+    // Initial check
+    handleScrollActiveSection();
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollActiveSection);
+    };
+  }, [isWbsPage]);
 
   return (
     <header
@@ -110,7 +200,7 @@ const Header = () => {
         >
           <nav>
             <ul className="flex flex-col gap-5 xl:flex-row xl:items-center xl:gap-10">
-              {menuData.map((menuItem, key) => (
+              {currentMenu.map((menuItem, key) => (
                 <li key={key} className={menuItem.submenu && "group relative"}>
                   {menuItem.submenu ? (
                     <>
@@ -152,13 +242,23 @@ const Header = () => {
                   ) : (
                     <Link
                       href={`${menuItem.path}`}
-                      className={
-                        pathUrl === menuItem.path
-                          ? "font-semibold text-blue-600 dark:text-blue-400"
-                          : "font-medium text-blue-900 duration-300 hover:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300"
-                      }
+                      onClick={() => setNavigationOpen(false)}
+                      className={`relative pb-1 font-semibold duration-300 transition-colors ${
+                        (isWbsPage && activeSection === menuItem.path) ||
+                        (!isWbsPage && !menuItem.path?.startsWith("#") && pathUrl === menuItem.path)
+                          ? "text-blue-600 dark:text-blue-400"
+                          : "text-blue-900 hover:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300"
+                      }`}
                     >
                       {menuItem.title}
+                      {((isWbsPage && activeSection === menuItem.path) ||
+                        (!isWbsPage && !menuItem.path?.startsWith("#") && pathUrl === menuItem.path)) && (
+                        <motion.span
+                          layoutId="activeNavigationDot"
+                          className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-blue-600 dark:bg-blue-400"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
                     </Link>
                   )}
                 </li>

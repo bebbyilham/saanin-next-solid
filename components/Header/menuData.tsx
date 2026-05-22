@@ -207,8 +207,8 @@ const menuData: Menu[] = [
       {
         id: 71,
         title: "Whistle Blowing System",
-        newTab: false,
-        path: "/kategori/whistle-blowing-system",
+        newTab: true,
+        path: "/whistle-blowing-system",
       },
       {
         id: 72,
