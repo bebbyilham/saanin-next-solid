@@ -7,13 +7,15 @@ const WhistleBlowingSystem = () => {
   const [isFaqOpen, setIsFaqOpen] = useState(true);
 
   const handleContactClick = () => {
-    window.location.href =
-      "mailto:rjshbsaanin@yahoo.co.id?subject=Pengaduan%20WBS%20-%20RSJ%20Prof%20Dr%20HB%20Saanin";
+    window.location.href = "https://forms.gle/MM8xYLM6JEbcwuyd7";
   };
 
   return (
     <>
-      <section id="wbs-hero" className="relative pt-35 pb-20 lg:pt-40 lg:pb-25 xl:pt-45 xl:pb-30 overflow-hidden">
+      <section
+        id="wbs-hero"
+        className="relative overflow-hidden pt-35 pb-20 lg:pt-40 lg:pb-25 xl:pt-45 xl:pb-30"
+      >
         {/* Background Decorative Glow Circles */}
         <div className="absolute top-[10%] left-[-15%] -z-10 h-[450px] w-[450px] rounded-full bg-blue-400/8 blur-[120px] dark:bg-blue-600/5" />
         <div className="absolute top-[50%] right-[-15%] -z-10 h-[500px] w-[500px] rounded-full bg-blue-500/8 blur-[130px] dark:bg-blue-500/5" />
@@ -233,11 +235,7 @@ const WhistleBlowingSystem = () => {
                   Verifikasi Laporan
                 </h3>
                 <p className="text-sm leading-relaxed font-semibold text-blue-950/70 dark:text-blue-100/70">
-                  Pelaporan akan ditindaklanjuti dan diverifikasi keaslian serta
-                  bukti pendukungnya dalam jangka waktu{" "}
-                  <span className="font-bold text-blue-500 dark:text-blue-400">
-                    maksimal 3 hari kerja
-                  </span>{" "}
+                  Pelaporan akan ditindaklanjuti dan diverifikasi keasliannya
                   setelah laporan dikirimkan.
                 </p>
               </div>

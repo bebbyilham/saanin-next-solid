@@ -132,22 +132,38 @@ const Header = () => {
       }}
     >
       <div className="relative w-full items-center justify-between xl:flex">
-        <div className="flex w-full items-center justify-between xl:w-1/4">
-          <a href="/">
-            <Image
-              src="/images/logo/logosbhbss.png"
-              alt="logo"
-              width={219.03}
-              height={60}
-              className="hidden w-full max-w-[180px] md:max-w-[219px] dark:block"
-            />
-            <Image
-              src="/images/logo/logosbhbss.png"
-              alt="logo"
-              width={219.03}
-              height={60}
-              className="w-full max-w-[180px] md:max-w-[219px] dark:hidden"
-            />
+        <div className="flex w-full items-center justify-between xl:w-auto shrink-0">
+          <a 
+            href={isWbsPage ? "/whistle-blowing-system" : "/"} 
+            className="flex items-center gap-2 md:gap-3"
+          >
+            <div className="relative">
+              <Image
+                src="/images/logo/logosbhbss.png"
+                alt="logo"
+                width={219.03}
+                height={60}
+                className="hidden w-full max-w-[140px] sm:max-w-[180px] md:max-w-[219px] dark:block"
+              />
+              <Image
+                src="/images/logo/logosbhbss.png"
+                alt="logo"
+                width={219.03}
+                height={60}
+                className="w-full max-w-[140px] sm:max-w-[180px] md:max-w-[219px] dark:hidden"
+              />
+            </div>
+            {isWbsPage && (
+              <span 
+                className="inline-flex items-center rounded-full bg-blue-500/15 border border-blue-500/30 dark:border-blue-400/40 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-black tracking-wider text-blue-600 dark:text-blue-300 uppercase shadow-sm shadow-blue-500/5 select-none"
+                style={{
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                }}
+              >
+                WBS
+              </span>
+            )}
           </a>
 
           {/* <!-- Hamburger Toggle BTN --> */}
@@ -193,7 +209,7 @@ const Header = () => {
 
         {/* Nav Menu Start   */}
         <div
-          className={`invisible h-0 w-full items-center justify-between xl:visible xl:flex xl:h-auto xl:w-full ${
+          className={`invisible h-0 w-full items-center justify-between xl:visible xl:flex xl:h-auto xl:w-full xl:pl-16 ${
             navigationOpen &&
             "navbar visible! mt-4 h-auto max-h-[400px] border-none bg-transparent p-4 xl:h-auto xl:border-none xl:bg-transparent xl:p-0 xl:shadow-none xl:dark:bg-transparent"
           }`}
@@ -269,10 +285,11 @@ const Header = () => {
           <div className="mt-7 flex items-center gap-6 xl:mt-0">
             <ThemeToggler />
             <Link
-              href="https://rsjhbsaanin.com/"
+              href={isWbsPage ? "#wbs-lokasi" : "https://rsjhbsaanin.com/"}
+              onClick={() => setNavigationOpen(false)}
               className="bg-primary text-regular hover:bg-primaryho flex items-center justify-center rounded-full px-7.5 py-2.5 text-white duration-300 ease-in-out"
             >
-              Daftar Online
+              {isWbsPage ? "Kontak" : "Daftar Online"}
             </Link>
           </div>
         </div>

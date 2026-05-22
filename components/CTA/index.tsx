@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 const quickLinks = [
   { title: "Berita", path: "/kategori/berita-utama" },
   { title: "PPID", path: "/ppid" },
-  { title: "Perpustakaan", path: "/perpustakaan/laporan-kinerja-instansi-pemerintah" },
   { title: "Jadwal Dokter", path: "/jadwal-dokter" },
   { title: "Info Tempat Tidur", path: "/info-tempat-tidur" },
 ];

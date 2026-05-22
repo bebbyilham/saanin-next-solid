@@ -44,42 +44,44 @@ const Hero = () => {
         <div className="max-w-c-1390 mx-auto px-4 md:px-8 2xl:px-0">
           <div className="animate_right">
             {isLoading ? (
-              <div className="flex aspect-[139/50] w-full items-center justify-center rounded-2xl bg-gray-100 dark:bg-strokedark">
+              <div className="flex aspect-[1920/900] w-full items-center justify-center rounded-2xl bg-gray-100 dark:bg-strokedark">
                 <div className="h-10 w-10 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
               </div>
             ) : sliders.length > 0 ? (
-                <Swiper
-                  modules={[Autoplay, Pagination]}
-                  spaceBetween={30}
-                  slidesPerView={1}
-                  loop={true}
-                  autoplay={{ delay: 5000, disableOnInteraction: false }}
-                  pagination={{ clickable: true }}
+              <Swiper
+                modules={[Autoplay, Pagination]}
+                spaceBetween={30}
+                slidesPerView={1}
+                loop={true}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                pagination={{ clickable: true }}
                 className="w-full rounded-2xl"
               >
                 {sliders.map((slider, index) => (
                   <SwiperSlide key={index}>
-                    <Image
-                      src={`https://api-web.sumbarprov.go.id${slider.gambar}`}
-                      alt={`Slider ${index + 1}`}
-                      width={1390}
-                      height={500}
-                      priority={index === 0}
-                      className="h-auto w-full rounded-2xl object-cover object-center"
-                      unoptimized
-                    />
+                    <div className="relative w-full aspect-[1920/900] overflow-hidden rounded-2xl">
+                      <Image
+                        src={`https://api-web.sumbarprov.go.id${slider.gambar ? encodeURI(slider.gambar) : ""}`}
+                        alt={`Slider ${index + 1}`}
+                        fill
+                        priority={index === 0}
+                        className="object-cover object-center rounded-2xl"
+                        unoptimized
+                      />
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
             ) : (
-              <Image
-                src="/images/hero/h1_hero.png"
-                alt="Rumah Sakit Jiwa Prof. HB Saanin"
-                width={1390}
-                height={500}
-                priority
-                className="h-auto w-full rounded-2xl object-cover object-center"
-              />
+              <div className="relative w-full aspect-[1920/900] overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/hero/h1_hero.png"
+                  alt="Rumah Sakit Jiwa Prof. HB Saanin"
+                  fill
+                  priority
+                  className="object-cover object-center rounded-2xl"
+                />
+              </div>
             )}
           </div>
         </div>
