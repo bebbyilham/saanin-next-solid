@@ -174,10 +174,10 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="/perpustakaan/informasi-publik"
+                        href="/ppid"
                         className="hover:text-primary mb-3 inline-block"
                       >
-                        Perpustakaan
+                        PPID
                       </a>
                     </li>
                     <li>
