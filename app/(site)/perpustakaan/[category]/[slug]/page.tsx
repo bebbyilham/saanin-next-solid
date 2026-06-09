@@ -13,12 +13,21 @@ export const metadata: Metadata = {
 };
 
 async function getDocumentDetail(slug: string) {
-  const res = await fetch(`https://api-web.sumbarprov.go.id/api/berita/detail/${slug}`, {
-    cache: 'no-store', // Disable cache to show latest data immediately
-  });
-  if (!res.ok) return null;
-  const result = await res.json();
-  return result?.data || null;
+  try {
+    const res = await fetch(`https://api-web.sumbarprov.go.id/api/berita/detail/${slug}`, {
+      cache: 'no-store', // Disable cache to show latest data immediately
+    });
+    if (!res.ok) return null;
+    const result = await res.json();
+    if (result && result.error) {
+      console.warn("API Error:", result.error);
+      return null;
+    }
+    return result?.data || null;
+  } catch (error) {
+    console.error("Fetch document detail error:", error);
+    return null;
+  }
 }
 
 const formatTitle = (category: string) => {
@@ -47,6 +56,18 @@ const DocumentDetailPage = async ({ params }: Props) => {
 
   const fileUrl = data.gambar ? `${baseUrl}${data.gambar}` : null;
   const isPdf = fileUrl && fileUrl.toLowerCase().endsWith(".pdf");
+  
+  let pdfExists = false;
+  if (isPdf && fileUrl) {
+    try {
+      const checkRes = await fetch(fileUrl, { method: "HEAD" });
+      if (checkRes.ok) {
+        pdfExists = true;
+      }
+    } catch (e) {
+      pdfExists = false;
+    }
+  }
 
   return (
     <section className="pb-20 pt-35 lg:pb-25 lg:pt-45 xl:pb-30 xl:pt-50 bg-[#f8fafc] dark:bg-black">
@@ -95,14 +116,32 @@ const DocumentDetailPage = async ({ params }: Props) => {
                 )}
               </div>
 
-              <div className="p-0 bg-gray-100 min-h-[600px] lg:h-[800px] w-full relative flex items-center justify-center">
+              <div className="p-0 bg-gray-100 min-h-[500px] lg:h-[800px] w-full relative flex items-center justify-center dark:bg-black/30">
                 {fileUrl ? (
                   isPdf ? (
-                    <iframe
-                      src={`${fileUrl}#toolbar=0`}
-                      className="w-full h-full border-none"
-                      title={data.title}
-                    />
+                    pdfExists ? (
+                      <iframe
+                        src={`${fileUrl}#toolbar=0`}
+                        className="w-full h-full border-none"
+                        title={data.title}
+                      />
+                    ) : (
+                      <div className="w-full p-8 text-center bg-blue-500/5 dark:bg-blue-950/20 border border-blue-200/30 dark:border-blue-800/20 rounded-2xl">
+                        <div className="mx-auto w-12 h-12 text-blue-500/60 dark:text-blue-400/60 mb-4 flex items-center justify-center">
+                          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="9" y1="15" x2="15" y2="15"></line>
+                            <line x1="9" y1="11" x2="15" y2="11"></line>
+                            <line x1="9" y1="19" x2="15" y2="19"></line>
+                          </svg>
+                        </div>
+                        <h4 className="text-lg font-bold text-blue-950 dark:text-blue-200 mb-2">Berkas PDF Tidak Ditemukan</h4>
+                        <p className="text-sm text-blue-600/70 dark:text-blue-400/70 max-w-md mx-auto">
+                          Maaf, berkas lampiran PDF untuk dokumen ini tidak tersedia atau telah dihapus dari server pusat.
+                        </p>
+                      </div>
+                    )
                   ) : (
                     <div className="relative w-full h-full">
                        <Image

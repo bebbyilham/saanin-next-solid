@@ -14,14 +14,24 @@ export const metadata: Metadata = {
 };
 
 async function getCategoryData(slug: string, page: string = "1") {
-  const res = await fetch(
-    `https://api-web.sumbarprov.go.id/api/category/${slug}/3107?page=${page}`,
-    {
-      next: { revalidate: 60 },
-    },
-  );
-  if (!res.ok) return null;
-  return res.json();
+  try {
+    const res = await fetch(
+      `https://api-web.sumbarprov.go.id/api/category/${slug}/3107?page=${page}`,
+      {
+        next: { revalidate: 60 },
+      },
+    );
+    if (!res.ok) return null;
+    const result = await res.json();
+    if (result && result.error) {
+      console.warn("API Error:", result.error);
+      return null;
+    }
+    return result;
+  } catch (error) {
+    console.error("Fetch category data error:", error);
+    return null;
+  }
 }
 
 const CategoryPage = async ({ params, searchParams }: Props) => {
@@ -142,13 +152,40 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
                     className="relative block aspect-[16/10] shrink-0 overflow-hidden"
                   >
                     {item.gambar ? (
-                      <Image
-                        src={baseUrl + encodeURI(item.gambar)}
-                        alt={item.title || "Post image"}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        unoptimized
-                      />
+                      item.gambar.toLowerCase().endsWith(".pdf") ? (
+                        <div className="flex h-full w-full flex-col items-center justify-center bg-blue-500/10 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 font-bold gap-2 transition-colors duration-300 group-hover:bg-blue-500/15">
+                          <svg
+                            width="48"
+                            height="48"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="animate-pulse"
+                          >
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                          </svg>
+                          <span className="text-[10px] tracking-wider uppercase font-extrabold bg-blue-500/20 px-2 py-0.5 rounded-full border border-blue-500/30">
+                            DOKUMEN PDF
+                          </span>
+                          <span className="text-sm font-bold text-center px-4 line-clamp-2 max-w-[250px] text-blue-900 dark:text-blue-200 mt-1">
+                            {item.title}
+                          </span>
+                        </div>
+                      ) : (
+                        <Image
+                          src={baseUrl + encodeURI(item.gambar)}
+                          alt={item.title || "Post image"}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          unoptimized
+                        />
+                      )
                     ) : (
                       <div className="flex h-full w-full items-center justify-center bg-blue-100/30 dark:bg-blue-950/30 text-blue-400 font-semibold">
                         No Image

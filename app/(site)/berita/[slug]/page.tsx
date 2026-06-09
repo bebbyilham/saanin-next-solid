@@ -16,12 +16,21 @@ export const metadata: Metadata = {
 };
 
 async function getNewsDetail(slug: string) {
-  const res = await fetch(`https://api-web.sumbarprov.go.id/api/berita/detail/${slug}`, {
-    next: { revalidate: 3600 },
-  });
-  if (!res.ok) return null;
-  const result = await res.json();
-  return result?.data || null;
+  try {
+    const res = await fetch(`https://api-web.sumbarprov.go.id/api/berita/detail/${slug}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return null;
+    const result = await res.json();
+    if (result && result.error) {
+      console.warn("API Error:", result.error);
+      return null;
+    }
+    return result?.data || null;
+  } catch (error) {
+    console.error("Fetch news detail error:", error);
+    return null;
+  }
 }
 
 const NewsDetailPage = async ({ params }: Props) => {
@@ -41,6 +50,19 @@ const NewsDetailPage = async ({ params }: Props) => {
   }
 
   const imageUrl = data.gambar ? `${baseUrl}${data.gambar}` : null;
+  const isPdf = imageUrl && imageUrl.toLowerCase().endsWith(".pdf");
+  
+  let pdfExists = false;
+  if (isPdf && imageUrl) {
+    try {
+      const checkRes = await fetch(imageUrl, { method: "HEAD" });
+      if (checkRes.ok) {
+        pdfExists = true;
+      }
+    } catch (e) {
+      pdfExists = false;
+    }
+  }
 
   return (
     <>
@@ -125,17 +147,69 @@ const NewsDetailPage = async ({ params }: Props) => {
                   WebkitBackdropFilter: "blur(20px)"
                 }}
               >
-                {imageUrl && (
-                  <div className="mb-10 w-full overflow-hidden rounded-xl border border-blue-200/20">
-                    <div className="relative aspect-[16/9] w-full">
-                      <Image
-                        src={imageUrl}
-                        alt={data.title}
-                        fill
-                        className="object-cover object-center"
-                        unoptimized
-                      />
-                    </div>
+                 {imageUrl && (
+                  <div className="mb-10 w-full overflow-hidden rounded-xl border border-blue-200/20 dark:border-blue-800/25 shadow-lg shadow-blue-500/3">
+                    {isPdf ? (
+                      pdfExists ? (
+                        <div className="w-full h-[500px] md:h-[700px] bg-blue-500/5 dark:bg-blue-950/20 flex flex-col">
+                          <div className="bg-blue-600 dark:bg-blue-950 border-b border-blue-200/20 dark:border-blue-800/30 px-5 py-3 flex items-center justify-between">
+                            <div className="flex items-center gap-2 text-white font-semibold text-sm">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                              </svg>
+                              Dokumen PDF
+                            </div>
+                            <a
+                              href={imageUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-white text-xs flex items-center gap-1 hover:underline"
+                            >
+                              Buka di tab baru
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                              </svg>
+                            </a>
+                          </div>
+                          <iframe
+                            src={`${imageUrl}`}
+                            className="w-full h-full border-none"
+                            title={data.title}
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-full p-8 text-center bg-blue-500/5 dark:bg-blue-950/20 border border-blue-200/30 dark:border-blue-800/20 rounded-2xl">
+                          <div className="mx-auto w-12 h-12 text-blue-500/60 dark:text-blue-400/60 mb-4 flex items-center justify-center">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                              <polyline points="14 2 14 8 20 8"></polyline>
+                              <line x1="9" y1="15" x2="15" y2="15"></line>
+                              <line x1="9" y1="11" x2="15" y2="11"></line>
+                              <line x1="9" y1="19" x2="15" y2="19"></line>
+                            </svg>
+                          </div>
+                          <h4 className="text-lg font-bold text-blue-950 dark:text-blue-200 mb-2">Berkas PDF Tidak Ditemukan</h4>
+                          <p className="text-sm text-blue-600/70 dark:text-blue-400/70 max-w-md mx-auto">
+                            Maaf, berkas lampiran PDF untuk informasi ini tidak tersedia atau telah dihapus dari server pusat.
+                          </p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="relative aspect-[16/9] w-full">
+                        <Image
+                          src={imageUrl}
+                          alt={data.title}
+                          fill
+                          className="object-cover object-center"
+                          unoptimized
+                        />
+                      </div>
+                    )}
                   </div>
                 )}
 

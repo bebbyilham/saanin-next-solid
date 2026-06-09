@@ -45,13 +45,35 @@ const SidebarNews = async () => {
             <div className="flex gap-4 border-b border-blue-100/40 dark:border-blue-900/30 pb-4 last:border-0 last:pb-0" key={key}>
               <div className="relative shrink-0 h-16 w-16 overflow-hidden rounded-lg border border-blue-200/20">
                 {post.gambar ? (
-                  <Image 
-                    fill 
-                    src={`${baseUrl}${post.gambar}`} 
-                    alt={post.judul || post.title || "Thumbnail Berita"} 
-                    className="object-cover" 
-                    unoptimized 
-                  />
+                  post.gambar.toLowerCase().endsWith(".pdf") ? (
+                    <div className="flex h-full w-full flex-col items-center justify-center bg-blue-500/10 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 font-bold transition-colors duration-300">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="animate-pulse"
+                      >
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                      </svg>
+                      <span className="text-[7px] font-extrabold uppercase bg-blue-500/20 px-1 py-0.2 rounded border border-blue-500/30 mt-0.5 scale-90">
+                        PDF
+                      </span>
+                    </div>
+                  ) : (
+                    <Image 
+                      fill 
+                      src={`${baseUrl}${post.gambar}`} 
+                      alt={post.judul || post.title || "Thumbnail Berita"} 
+                      className="object-cover" 
+                      unoptimized 
+                    />
+                  )
                 ) : (
                   <div className="w-full h-full bg-blue-100/30 dark:bg-blue-950/30 rounded flex items-center justify-center text-[10px] text-blue-400">No Image</div>
                 )}

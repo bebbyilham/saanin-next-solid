@@ -7,6 +7,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Accessibility from "@/components/Accessibility";
 import { ThemeProvider } from "next-themes";
 import ToasterContext from "../context/ToastContext";
+import ChatWidget from "@/components/TanyaAI/ChatWidget";
 
 export default function ClientLayout({
     children,
@@ -26,6 +27,7 @@ export default function ClientLayout({
             <Footer />
             <Accessibility />
             <ScrollToTop />
+            <ChatWidget />
         </ThemeProvider>
     );
 }

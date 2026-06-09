@@ -184,6 +184,12 @@ const menuData: Menu[] = [
         newTab: false,
         path: "/kategori/regulasi",
       },
+      {
+        id: 59,
+        title: "Tanya AI 🤖",
+        newTab: false,
+        path: "/tanya-ai",
+      },
     ],
   },
   {

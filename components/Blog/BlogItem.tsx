@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const BlogItem = ({ blog, variant = "small" }: { blog: Blog; variant?: "large" | "small" }) => {
   const { mainImage, title, metadata, slug, publishedAt } = blog;
+  const isPdf = mainImage && mainImage.toLowerCase().endsWith(".pdf");
 
   if (variant === "large") {
     return (
@@ -25,12 +26,39 @@ const BlogItem = ({ blog, variant = "small" }: { blog: Blog; variant?: "large" |
         }}
       >
         <Link href={`/berita/${slug}`} className="relative block aspect-video w-full overflow-hidden">
-          <Image
-            src={mainImage}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {isPdf ? (
+            <div className="flex h-full w-full flex-col items-center justify-center bg-blue-500/10 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 font-bold gap-2 transition-colors duration-300 group-hover:bg-blue-500/15">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="animate-pulse"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+              <span className="text-[10px] tracking-wider uppercase font-extrabold bg-blue-500/20 px-2 py-0.5 rounded-full border border-blue-500/30">
+                DOKUMEN PDF
+              </span>
+              <span className="text-sm font-bold text-center px-6 line-clamp-2 max-w-[280px] text-blue-900 dark:text-blue-200 mt-1">
+                {title}
+              </span>
+            </div>
+          ) : (
+            <Image
+              src={mainImage}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )}
           {/* Badge */}
           <div 
             className="absolute left-5 top-5 z-10 rounded-full bg-blue-500/30 border border-blue-200/40 px-3 py-1 text-xs font-bold uppercase text-white"
@@ -82,12 +110,34 @@ const BlogItem = ({ blog, variant = "small" }: { blog: Blog; variant?: "large" |
       }}
     >
       <Link href={`/berita/${slug}`} className="relative h-20 w-24 flex-shrink-0 overflow-hidden rounded-lg md:h-24 md:w-32 border border-blue-200/10 dark:border-blue-800/10">
-        <Image
-          src={mainImage}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        {isPdf ? (
+          <div className="flex h-full w-full flex-col items-center justify-center bg-blue-500/10 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 font-bold transition-colors duration-300 group-hover:bg-blue-500/15">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="animate-pulse"
+            >
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            <span className="text-[8px] font-extrabold uppercase bg-blue-500/20 px-1 py-0.5 rounded border border-blue-500/30 mt-1">
+              PDF
+            </span>
+          </div>
+        ) : (
+          <Image
+            src={mainImage}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        )}
       </Link>
 
       <div className="flex flex-col">
