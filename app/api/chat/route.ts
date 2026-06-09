@@ -82,30 +82,71 @@ export async function POST(request: NextRequest) {
       };
     });
 
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    // List of models to try in order of preference
+    const MODELS_TO_TRY = [
+      "gemini-2.5-flash",
+      "gemini-3.1-flash-lite",
+      "gemini-2.5-flash-lite",
+    ];
 
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        contents: formattedContents,
-        systemInstruction: {
-          parts: [{ text: SYSTEM_INSTRUCTION }],
-        },
-        generationConfig: {
-          temperature: 0.4,
-          maxOutputTokens: 1000,
-          topP: 0.95,
-        },
-      }),
-    });
+    let response: any = null;
+    let errorDetails = "";
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error("Gemini API Error details:", errorData);
-      throw new Error(`Gemini API returned status ${response.status}`);
+    for (const model of MODELS_TO_TRY) {
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+      for (let attempt = 1; attempt <= 2; attempt++) {
+        try {
+          response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              contents: formattedContents,
+              systemInstruction: {
+                parts: [{ text: SYSTEM_INSTRUCTION }],
+              },
+              generationConfig: {
+                temperature: 0.4,
+                maxOutputTokens: 1000,
+                topP: 0.95,
+              },
+            }),
+          });
+
+          if (response.ok) {
+            break;
+          }
+
+          const errorData = await response.json().catch(() => ({}));
+          errorDetails = `Model ${model} (attempt ${attempt}) returned status ${response.status}: ${JSON.stringify(errorData)}`;
+          console.warn(errorDetails);
+
+          // Only retry on transient/rate-limit errors (503 or 429)
+          if (response.status !== 503 && response.status !== 429) {
+            break;
+          }
+
+          if (attempt < 2) {
+            await new Promise((resolve) => setTimeout(resolve, 500 * attempt));
+          }
+        } catch (fetchErr: any) {
+          errorDetails = `Model ${model} (attempt ${attempt}) fetch failed: ${fetchErr.message}`;
+          console.warn(errorDetails);
+          if (attempt < 2) {
+            await new Promise((resolve) => setTimeout(resolve, 500 * attempt));
+          }
+        }
+      }
+
+      if (response && response.ok) {
+        break;
+      }
+    }
+
+    if (!response || !response.ok) {
+      throw new Error(`Semua model Gemini gagal merespons. Detail kesalahan terakhir: ${errorDetails}`);
     }
 
     const data = await response.json();
