@@ -78,7 +78,7 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
   };
 
   const getPages = () => {
-    const pages = [];
+    const pages: (number | string)[] = [];
     const range = 1; // Number of pages to show around current page
     
     for (let i = 1; i <= totalPages; i++) {
